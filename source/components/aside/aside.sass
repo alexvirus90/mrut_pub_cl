@@ -1,0 +1,88 @@
+
+.aside
+  border: 0
+  top: 0
+  position: fixed
+  right: 0
+  bottom: 0
+  background-color: #fafafa
+  font-family: Helvetica, Arial, sans-serif
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
+  width: 0px
+  min-width: 0px
+  overflow: hidden
+  transition: 0.35s width ease, 0.35s min-width ease
+  &-backdrop
+    z-index: 1500
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: #000
+    transition: 0.2s opacity ease
+    opacity: 0
+    display: none
+    &.in
+      display: block
+      opacity: 0.5
+  &-header
+    border-top: 1px solid #B5B9C0
+    background-color: #3498DB
+    padding: 1em
+    padding-left: 0.5em
+    border-bottom: 3px solid #2980B9
+    font-size: 1.2em
+    color: #fff
+    .close
+      float: right
+      cursor: pointer
+  &-contents
+    overflow: hidden
+    padding: 0.5em
+    padding-bottom: 1em
+    .nav-item
+      width: 50%
+      .nav-link
+        text-transform: uppercase
+        font-weight: bold
+        text-align: center
+    @include scrollbars(.7em, grey)
+    #contact
+      height: auto
+      overflow-y: auto
+      .row
+        display: block
+        .caption
+          margin: 10px 0 0
+          color: #466ba1
+          font-size: 18px
+          text-align: center
+          text-decoration: none
+        .col_1, .col_2
+          display: inline-block
+        .col_1
+          text-align: right
+          max-width: 45%
+          padding: 0 5px 0 0
+        .col_2
+          padding: 0
+          text-align: left
+          max-width: 50%
+          vertical-align: top
+        p
+          font-size: 12px
+          a[href^="tel:"]
+            text-decoration: none
+            color: #000000
+            vertical-align: top
+          i
+            margin: 0 5px
+    .feedEkList
+      height: auto
+      overflow-x: hidden
+  &.in
+    width: 400px
+    min-width: 320px
+    z-index: 2000
+    top: 0

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta(charset = 'utf-8')
+    meta(name='viewport', content="initial-scale=1.0, width=device-width")
+    link(rel="shortcut icon" href="./images/favicon.png")
+    title
+      | Уборочная техника
+  body
+    include ../components/modal/modal
+    include ./header/header
+    div(data-role="content" style="padding:0;")
+      include ./map/map
+      include ../components/aside/aside
