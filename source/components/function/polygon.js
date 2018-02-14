@@ -5,7 +5,6 @@ let job = new vis.DataSet(options);
 let jobArrP = [];
 let szp = "",
 		szd = "";
-let poly, item;
 
 let latlngs = [{
 	"type": "Feature",
@@ -50,11 +49,6 @@ let latlngs = [{
 let polygon = L.geoJSON(latlngs, {
 
 });
-for(let k in latlngs){
-	if (typeof latlngs[k] === 'object') {
-		poly = latlngs[k];
-	}
-}
 
 polygon.on({
 	click: (e) => {
@@ -74,7 +68,7 @@ $.ajax({
 	job.add(data.row);
 	for (let k in job._data) {
 		if (typeof job._data[k] === 'object') {
-			item = job._data[k];
+			let item = job._data[k];
 			jobArrP.push(item);
 			if(job._data[k]['Name_State'] !== 'Выполнено') {
 				szp += '<div class="row"><div class="col-12 caption"><span class="name">Сменное задание № ' + item['ID'] + '</span><hr></div>' +
@@ -105,8 +99,10 @@ $.ajax({
 				$('#done').html(szd);
 			}
 			$(".caption span").on('click', function () {
-				if(job._data[k]['ID_RM_RouteTaskHeader'] ){
-
+				for(let k in latlngs){
+					if (typeof latlngs[k] === 'object') {
+						let poly = latlngs[k];
+					}
 				}
 			});
 		}
