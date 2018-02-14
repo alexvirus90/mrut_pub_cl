@@ -14,8 +14,8 @@ drawMap();
 $(window).resize(() => {
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(rsM(), 100);
-	$('.feedEkList').css('max-height', '');
-	$('#contact').css('max-height', '');
+	$('#performed').css('max-height', '');
+	$('#done').css('max-height', '');
 	nsScrl();
 });
 

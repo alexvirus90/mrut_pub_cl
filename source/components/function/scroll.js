@@ -5,6 +5,6 @@ export default function nsScrl() {
 	let max_height  = {
 		"max-height": navTab - 15 + 'px',
 	};
-	$('.feedEkList').css(max_height);
-	$('#contact').css(max_height);
+	$('#performed').css(max_height);
+	$('#done').css(max_height);
 }

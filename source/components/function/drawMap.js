@@ -2,11 +2,12 @@
 
 import 'leaflet.fullscreen';
 // import 'leaflet.locatecontrol';
-import zoom from '../function/zoomend';
-import move from '../function/moveend';
-import legendslide from '../function/legendslide';
-import legend from '../function/legend';
-import {mrkOn, mrkOff} from '../function/waitforpool';
+import zoom from './zoomend';
+import move from './moveend';
+import legendslide from './legendslide';
+import legend from './legend';
+import {mrkOn, mrkOff} from './waitforpool';
+import {polygon} from './polygon';
 
 let map, spbCntr;
 
@@ -17,9 +18,9 @@ export default function drawMap() {
 		detectRetina: true,
 		minZoom: 9
 	});
-	let night  	 = new L.TileLayer(cloudUrl, {styleId: 999});
-	spbCntr 	   = new L.LatLng(59.930967, 30.302636);
-	map 	 = new L.Map('map_canvas', { center: spbCntr, zoom: 10, layers: [day, mrkOn]});
+	let night = new L.TileLayer(cloudUrl, {styleId: 999});
+	spbCntr 	= new L.LatLng(59.930967, 30.302636);
+	map 	 		= new L.Map('map_canvas', { center: spbCntr, zoom: 10, layers: [day, polygon]});
 
 	map.setMaxBounds([[59.430967, 29.302636], [60.430967, 31.302636]]);
 	let fs     = L.control.fullscreen({ position: 'topleft'}).addTo(map);			//fullscreen button
@@ -34,6 +35,7 @@ export default function drawMap() {
 	let overlayMaps = {
 		"На линии": mrkOn,
 		"На дежурстве": mrkOff,
+		"Полигоны": polygon,
 		// "Трекера": markerTrakers
 	};
 	let layersControl = new L.Control.Layers(baseMaps, overlayMaps);

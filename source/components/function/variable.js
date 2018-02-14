@@ -1,4 +1,4 @@
-// let options = {};
+export let options = {};
 // export let tAr			= new vis.DataSet(options);
 
 export let t1 = 'wss://mrut-test2.adc.spb.ru/wstele1/';

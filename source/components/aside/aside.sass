@@ -1,4 +1,3 @@
-
 .aside
   border: 0
   top: 0
@@ -8,8 +7,8 @@
   background-color: #fafafa
   font-family: Helvetica, Arial, sans-serif
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5)
-  width: 0px
-  min-width: 0px
+  width: 0
+  min-width: 0
   overflow: hidden
   transition: 0.35s width ease, 0.35s min-width ease
   &-backdrop
@@ -48,9 +47,9 @@
         font-weight: bold
         text-align: center
     @include scrollbars(.7em, grey)
-    #contact
+    #performed, #done
       height: auto
-      overflow-y: auto
+      overflow: auto
       .row
         display: block
         .caption
@@ -59,6 +58,10 @@
           font-size: 18px
           text-align: center
           text-decoration: none
+          .name
+            cursor: pointer
+            color: #0275d8
+            text-decoration: none
         .col_1, .col_2
           display: inline-block
         .col_1
@@ -70,17 +73,6 @@
           text-align: left
           max-width: 50%
           vertical-align: top
-        p
-          font-size: 12px
-          a[href^="tel:"]
-            text-decoration: none
-            color: #000000
-            vertical-align: top
-          i
-            margin: 0 5px
-    .feedEkList
-      height: auto
-      overflow-x: hidden
   &.in
     width: 400px
     min-width: 320px

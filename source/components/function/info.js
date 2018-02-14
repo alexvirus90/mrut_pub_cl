@@ -1,8 +1,8 @@
 import waitforpool from './waitforpool';
+import options from './variable';
 // import data from './info.json';
 
 let carsArray = [];
-let options = {};
 let dataInfo = new vis.DataSet(options);
 let global = {data: []};
 

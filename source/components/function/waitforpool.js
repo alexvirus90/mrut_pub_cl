@@ -1,4 +1,4 @@
-import './MovingMarker';
+import '../libs/MovingMarker';
 import getDurat from './duration';
 import getFuncCar from './funcar';
 import getIcon from './icon';
@@ -8,12 +8,12 @@ import {map} from './drawMap';
 
 let options = {};
 let data = new vis.DataSet(options);
-let mrkOn = new L.LayerGroup(),
-	mrkOff = new L.LayerGroup();
+let mrkOn  = new L.LayerGroup(),
+		mrkOff = new L.LayerGroup();
 export default function waitforpool() {
 	let _marker;
 
-	let webSocket = new WebSocket(t4);
+	/*let webSocket = new WebSocket(t4);
 
 	webSocket.onopen = function() {
 		console.log("Соединение установлено.");
@@ -114,7 +114,7 @@ export default function waitforpool() {
 	};
 	webSocket.onerror = function(error) {
 		console.log("Ошибка " + error.message);
-	};
+	};*/
 
 }
 export {data, mrkOn, mrkOff};

@@ -65,11 +65,12 @@ const common = merge([
 				"Tether": 'tether',
 				L: 'leaflet/dist/leaflet.js',
 				vis: 'vis/dist/vis.js',
-				Popper: ['popper.js', 'default']
+				// Popper: ['popper.js', 'default']
 			}),
 			new CopyWebpackPlugin([
 				{from:'pages/images',to:'images'},
 				{from:'components/function/info.json',to:''},
+				{from:'components/function/job.json',to:''},
 			]),
 		],
 		resolve: {

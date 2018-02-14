@@ -2,8 +2,7 @@
 
 import 'bootstrap-v4-dev';
 import './header.sass';
-import '../../components/function/aside';
-import '../../components/function/news';
+import '../../components/libs/aside';
 import setAttr from '../../components/function/add.js';
 import switdh from '../../components/function/switch.js'
 import clear from '../../components/function/clear.js'
@@ -32,13 +31,4 @@ $('.col-right').click(() => {
 		$('.aside').asidebar('open')
 	}
 });
-
-$('#news').FeedEk({
-	FeedUrl:'http://gov.spb.ru/gov/otrasl/blago/news/rss/',
-	MaxCount: 10,
-	ShowDesc: true,
-	ShowPubDate: true,
-	DescCharacterLimit: 100
-});
-
 
