@@ -7,7 +7,8 @@ import move from './moveend';
 import legendslide from './legendslide';
 import legend from './legend';
 import {mrkOn, mrkOff} from './waitforpool';
-import {polygon} from './polygon';
+import update from '../function/update';
+import {polygon} from '../polygon/polygon';
 
 let map, spbCntr;
 

@@ -11,7 +11,7 @@ const sass = require('./webpack/sass');
 const source_map = require('./webpack/source_map');
 const css = require('./webpack/css');
 const extractCSS = require('./webpack/css.extract');
-const uglifyJS = require('./webpack/js.uglify');
+// const uglifyJS = require('./webpack/js.uglify');
 const images = require('./webpack/images');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fonts = require('./webpack/fonts');
@@ -72,6 +72,8 @@ const common = merge([
 				{from:'components/function/info.json',to:''},
 				{from:'components/function/job.json',to:''},
 			]),
+			new webpack.NamedModulesPlugin(),
+			new webpack.HotModuleReplacementPlugin()
 		],
 		resolve: {
 			modules: ["node_modules"],
@@ -93,7 +95,7 @@ module.exports = function (env) {
 		return merge([
 			common,
 			extractCSS(),
-			uglifyJS()
+			// uglifyJS()
 		]);
 	}
 	if (env === 'development') {

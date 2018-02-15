@@ -1,10 +1,11 @@
 module.exports = function () {
-    return {
-        devServer: {
-            stats: 'errors-only',
-            port: 9001
-        }
-    }
+	return {
+		devServer: {
+			stats: 'errors-only',
+			port: 9001,
+			hot: true
+		}
+	}
 };
 
 
