@@ -1,10 +1,11 @@
 'use strict';
-import job from './job';
+import Job, {jobArrP} from './job';
 
+let id_rm = [];
 let latlngs = [{
 	"type": "Feature",
 	"properties": {
-		id: 9163
+		id: 2742
 	},
 	"geometry": {
 		"type": "Polygon",
@@ -17,41 +18,44 @@ let latlngs = [{
 }, {
 	"type": "Feature",
 	"properties": {
-		id: 9166
+		id: 9220
 	},
 	"geometry": {
 		"type": "Polygon",
 		"coordinates": [
 			[
-				[60.010970, 30.324669], [60.011091, 30.326744], [60.013120, 30.343318], [60.010656, 30.346966], [60.003929, 30.328871], [60.003846, 30.327516], [60.010970, 30.324669]
+				[30.324669, 60.010970], [30.326744, 60.011091], [30.343318, 60.013120], [30.346966, 60.010656], [30.328871, 60.003929], [30.327516, 60.003846], [30.324669, 60.010970]
 			]
 		]
 	}
 }, {
 	"type": "Feature",
 	"properties": {
-		id: 9169
+		id: 2712
 	},
 	"geometry": {
 		"type": "Polygon",
 		"coordinates": [
 			[
-				[60.007782, 30.339989], [60.003792, 30.341491], [60.004779, 30.350074], [60.006474, 30.354623], [60.010571, 30.347199], [60.007782, 30.339989]
+				[30.339989, 60.007782], [30.341491, 60.003792], [30.350074, 60.004779], [30.354623, 60.006474], [30.347199, 60.010571], [30.339989, 60.007782]
 			]
 		]
 	}
 }];
-console.log('latlngs', latlngs);
 let polygon = L.geoJSON(latlngs, {});
 polygon.on({
 	click: (e) => {
+		let poly = e.sourceTarget.feature.properties.id;
+		id_rm = jobArrP.filter(function (item) {
+			return item.ID_RM_RouteTaskHeader === poly;
+		});
 		if ($(".aside").hasClass("in")) {
 			$('.aside').asidebar('close')
 		} else {
 			$('.aside').asidebar('open')
 		}
+
 	}
 });
-job();
-
-export {polygon};
+Job();
+export {polygon, id_rm};

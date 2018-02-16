@@ -23,5 +23,4 @@ $.ajax({
 	.fail((jqXHR, textStatus, errorThrown) => {
 		// modEr(jqXHR, textStatus, errorThrown);
 	});
-
 export {carsArray, dataInfo, global};

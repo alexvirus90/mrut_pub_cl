@@ -5,7 +5,7 @@ export default function switdh() {
 	$(() => {
 		srchAddr();
 		let el = $('#search_query');
-		$('.button-state').click(() => {
+		$('.button-switch').on('click', () => {
 			if(el.hasClass('address')){
 				el.removeClass('address');
 				el.addClass('object');
@@ -22,7 +22,7 @@ export default function switdh() {
 				srchAddr();
 			}
 		});
-		$('form').submit(function () {
+		$('form').submit(() => {
 			return false;
 		});
 	});

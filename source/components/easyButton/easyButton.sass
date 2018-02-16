@@ -1,7 +1,28 @@
+@import "../sass/variables"
+@import "../sass/mixin"
+
+#icon1, #icon2, #icon3, #icon4, #icon5, #icon6, #icon7
+  padding: 0
+  width: 44px
+  height: 44px
+  .fas, .far
+    margin: 15.5px 0
+#funBtn
+  padding: 0
+  width: 44px
+  height: 44px
+  .far
+    font-size: 20px
+    margin: 12px 0
+    color: #737678
+.green
+  color: green
+.red
+  color: red
 .modal
   overflow-y: hidden!important
   &.show
-    &#infoModal
+    &#easyButton
       .modal-dialog
         max-width: 800px
         margin: 100px auto
@@ -19,16 +40,21 @@
             padding: 15px 0
             .nav
               position: fixed
-              top: 52px
               width: $value
               text-align: center
               padding: 0 15px
             @include scrollbars(.7em, grey)
             .tab-content
               overflow-y: auto
-              margin-top: 30px
+              margin: 50px 10px 0 0
               height: 375px
-              padding: 0 15px
+              padding: 0 5px 0 15px
+              .colFunc
+                padding: 0
+                .list-group-item.active
+                  background-color: #B5B9C0
+                  border-color: #B5B9C0
+                  color: #000
               .col_1
                 text-align: right
               .col_2
@@ -39,11 +65,3 @@
                 margin: 0
                 a
                   color: #4a5c6a
-.nav-pills
-  .nav-link
-    padding: .5em 1em
-    &.active
-      color: #4183c4
-      background-color: #fff
-      border-bottom: 4px solid #0275d8
-      border-radius: 0

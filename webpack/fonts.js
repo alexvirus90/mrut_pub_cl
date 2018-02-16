@@ -3,7 +3,7 @@ module.exports = function () {
 		module: {
 			rules: [
 				{
-					test: /fontawesome-webfont.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+					test: /(fontawesome-webfont|fa-(regular|solid|brands)-(400|900)).(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
 					use: [{
 						loader: 'file-loader',
 						options: {
@@ -12,7 +12,7 @@ module.exports = function () {
 							publicPath: '../'
 						}
 					}]
-				},
+				}
 			]
 		}
 	};

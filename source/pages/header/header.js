@@ -18,6 +18,7 @@ switdh();
 clear();
 
 $('.col-left').click(() => {
+	$('#infoModal').modal('show');
 	if ($(window).width() <= 575){
 		$('#system-tab').removeClass('active');
 		$('.icon_system').addClass('active');

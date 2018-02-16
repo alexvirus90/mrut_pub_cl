@@ -1,6 +1,7 @@
 'use strict';
 
 import 'leaflet.fullscreen';
+import easyButton from '../../components/easyButton/easyButton'
 // import 'leaflet.locatecontrol';
 import zoom from './zoomend';
 import move from './moveend';
@@ -41,6 +42,8 @@ export default function drawMap() {
 	};
 	let layersControl = new L.Control.Layers(baseMaps, overlayMaps);
 	map.addControl(layersControl);
+
+	easyButton();
 
 	zoom();
 	move();

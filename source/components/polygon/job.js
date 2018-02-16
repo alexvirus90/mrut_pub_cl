@@ -1,12 +1,14 @@
 'use strict';
 import options from '../function/variable';
-import {polygon} from './polygon';
+import {id_rm, polygon} from './polygon';
 
-export default function job() {
-	let job = new vis.DataSet(options);
-	let jobArrP = [];
-	let szp = "",
+let job = new vis.DataSet(options);
+let jobArrP = [];
+let szp = "",
 		szd = "";
+
+export default function Job() {
+
 	$.ajax({
 		url: "http://admmrut.adc.spb.ru/srv/api.php?action=get_app_list",
 		dataType: 'json'
@@ -25,16 +27,15 @@ export default function job() {
 							'<div class="col-5 col_1"><span>Маршрутное задание: </span></div>' +
 							'<div class="col-7 col_2"><span class="area">' + item['Name_RM_RouteTaskHeader'] + '</span></div>' +
 							'<div class="col-5 col_1"><span>Сотрудник: </span></div>' +
-							'<div class="col-7 col_2"><span class="man">' + item['KBDH_EmployeeName'] + '</span></div>' +
+							'<div class="col-7 col_2"><span class="man">' + ((item['KBDH_EmployeeName'] === null) ? '' : item['KBDH_EmployeeName'] ) + '</span></div>' +
 							'<div class="col-5 col_1"><span>Номер устройства: </span></div>' +
-							'<div class="col-7 col_2"><span class="no">' + item['NickName'] + '</span></div>' +
+							'<div class="col-7 col_2"><span class="no">' + ((item['NickName'] === null) ? '' : item['NickName']) + '</span></div>' +
 							'<div class="col-5 col_1"><span>Статус: </span></div>' +
 							'<div class="col-7 col_2"><span class="status">' + item['Name_State'] + '</span></div>' +
 							'<div class="btn-group-wrap">' +
 							'<div class="btn-group btn-group-sm" role="group">' +
 							'<button type="button" class="btn btn-success" value="Подтвердить">Подтвердить</button>' +
-							'<button type="button" class="btn btn-danger" value="Откланить">Откланить</button>' +
-							// '<button type="button" class="btn btn-secondary" value="3">Right</button>' +
+							'<button type="button" class="btn btn-danger" value="Отклонить">Отклонить</button>' +
 							'</div></div></div>';
 						$('.job').html(szp);
 					} else {
@@ -51,10 +52,6 @@ export default function job() {
 							'<div class="col-7 col_2"><span class="status">' + item['Name_State'] + '</span></div></div>';
 						$('#done').html(szd);
 					}
-					$(".caption span").on('click', function () {
-						// latlngs.indexOf()
-						// console.log('latlngs', latlngs);
-					});
 					$(".btn-group-wrap button").on('click', function () {
 						let v = $(this).val();
 						switch (v) {
@@ -66,8 +63,8 @@ export default function job() {
 									keyboard: false
 								});
 								break;
-							case 'Откланить':
-								$('.text').html('Вы уверены, что хотите <b>Откланить</b>?');
+							case 'Отклонить':
+								$('.text').html('Вы уверены, что хотите <b>Отклонить</b>?');
 								$('#window').modal({
 									backdrop: false,
 									show: true,
@@ -89,3 +86,5 @@ export default function job() {
 			// modEr(jqXHR, textStatus, errorThrown);
 		});
 }
+
+export {jobArrP}
