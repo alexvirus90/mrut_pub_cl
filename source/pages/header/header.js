@@ -1,6 +1,6 @@
 'use strict';
 
-import 'bootstrap-v4-dev';
+import 'bootstrap';
 import './header.sass';
 import '../../components/libs/aside';
 import setAttr from '../../components/function/add.js';

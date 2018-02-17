@@ -6,8 +6,6 @@ import '../libs/easybutton/easy-button'
 import './easyButton.sass'
 import setAttr from '../../components/function/add.js';
 
-// $fa-font-path: "../../components/fontawesome/webfonts"
-// import '../../components/fontawesome/fontawesome-all.min.css'
 import {map} from '../function/drawMap';
 
 export default function easyButton() {

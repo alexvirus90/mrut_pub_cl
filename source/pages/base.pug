@@ -7,10 +7,19 @@ html
     title
       | Уборочная техника
   body
-    include ../components/modal/modal
-    include ../components/easyButton/modalEasyButton
-    include ../components/polygon/modal
-    include ./header/header
-    div(data-role="content" style="padding:0;")
-      include ./map/map
-      include ../components/aside/aside
+    nav(class='tabs')
+      div(class="nav nav-tabs" id="nav-tab" role="tablist")
+        a(class="nav-item nav-link active" id="nav-manual-tab" data-toggle="tab" href="#nav-manual" role="tab" aria-controls="nav-manual" aria-selected="true") Ручная уборка
+        a(class="nav-item nav-link disabled" id="nav-mechanical-tab" data-toggle="tab" href="#nav-mechanical" role="tab" aria-controls="nav-mechanical" aria-selected="false") Механизированная уборка
+    div(class="tab-content" id="nav-tabContent")
+      div(id="manual" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-manual-tab")
+        include ../components/auth/auth
+        include ../components/auth/error
+        include ../components/modal/modal
+        include ../components/easyButton/modalEasyButton
+        include ../components/polygon/modal
+        include ./header/header
+        div(data-role="content" style="padding:0;")
+          include ./map/map
+          include ../components/aside/aside
+      div(id="mechanical" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-mechanical-tab")

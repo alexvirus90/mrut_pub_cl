@@ -26,6 +26,7 @@ const common = merge([
 			header: './pages/header/header.js',
 			media: './components/media/media.js',
 			map: './pages/map/map.js',
+			auth: './components/auth/auth.js',
 		},
 		output: {
 			path: PATHS.build,
@@ -36,9 +37,9 @@ const common = merge([
 			new webpack.NoEmitOnErrorsPlugin(),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
-				chunks: [ 'manifest', 'common', 'header', 'media', 'map'],
+				chunks: [ 'auth', 'manifest', 'common', 'header', 'media', 'map'],
 				chunksSortMode: function (chunk1, chunk2) {
-					var orders = [ 'manifest', 'common', 'header', 'map', 'media'];
+					var orders = [ 'manifest', 'common', 'auth', 'header', 'map', 'media'];
 					var order1 = orders.indexOf(chunk1.names[0]);
 					var order2 = orders.indexOf(chunk2.names[0]);
 					if (order1 > order2) {

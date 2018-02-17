@@ -1,0 +1,82 @@
+@import "~bootstrap/scss/bootstrap.scss"
+@import "../sass/variables"
+@import "../sass/mixin"
+
+.errorText
+  color: red
+#auth
+  .add-clear-span
+    width: 90%
+    input
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+      -webkit-box-flex: 1
+      -ms-flex: 1 1 auto
+      flex: 1 1 auto
+      margin-bottom: 0
+      width: 100%
+    a
+      font-size: 20px
+.modal
+  .modal-footer
+    button:focus
+      -webkit-box-shadow: none
+      -moz-box-shadow: none
+      box-shadow: none
+#Username
+  font-weight: 900
+  @include placeholder
+    font-weight: normal
+.maxlength-feedback
+  display: none
+.checkbox
+  position: absolute
+  opacity: 0
+  float: right
+  & + label
+    position: relative
+    cursor: pointer
+    padding: 0
+    float: right
+  & + label:before
+    content: ""
+    border: 1px solid gray
+    margin-right: 10px
+    display: inline-block
+    vertical-align: text-top
+    width: 20px
+    height: 20px
+    background: white
+  &:hover + label:before
+    background: #e9ecef
+  &:checked + label:before
+    background: #e9ecef
+  &:checked + label:after
+    content: ""
+    position: absolute
+    left: 5px
+    top: 11px
+    background: gray
+    width: 2px
+    height: 2px
+    box-shadow: 2px 0 0 gray, 4px 0 0 gray, 4px -2px 0 gray, 4px -4px 0 gray, 4px -6px 0 gray, 4px -8px 0 gray
+    transform: rotate(45deg)
+  &:disabled + label
+    color: #b8b8b8
+    cursor: auto
+  &:disabled + label:before
+    box-shadow: none
+    background: #ddd
+.pass
+  a
+    right: 50px !important
+#show_password
+  position: absolute
+  right: 6px
+  background-color: #e9ecef
+  border: 1px solid #ced4da
+  &:focus
+    box-shadow: none
+  &
+    i
+      color: #495057
