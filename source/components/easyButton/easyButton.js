@@ -108,6 +108,10 @@ export default function easyButton() {
 	}).addTo(map);
 
 	$('#funBtn').one('click', function () {
+		if ($(window).width() <= 575){
+			$('#summer-list-tab').removeClass('active');
+			$('.icon_system').addClass('active');
+		}
 		let textL = [
 			'Подметание территорий 1 класса с усовершенствованным покрытием',
 			'Подметание территорий 1 класса с неусовершенствованным покрытием',
@@ -165,4 +169,5 @@ export default function easyButton() {
 	$(".yes").on('click', function () {
 		$('#easyButton').modal('hide')
 	});
+
 }

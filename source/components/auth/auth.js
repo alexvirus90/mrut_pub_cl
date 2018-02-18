@@ -16,11 +16,11 @@ $(function () {
 	let transform = (height - 298) / 2.5;
 	$('body .modal.show#auth .modal-dialog').css('transform', 'translate(0,' + transform + 'px)');
 	$('body .modal.show#errorModal .modal-dialog').css('transform', 'translate(0,' + transform + 'px)');
-	$('#auth').modal({
-		keyboard: false,
-		backdrop: 'static',
-		show: true
-	});
+	// $('#auth').modal({
+	// 	keyboard: false,
+	// 	backdrop: 'static',
+	// 	show: true
+	// });
 });
 // $(document).ready(function () {
 // 	rsM();

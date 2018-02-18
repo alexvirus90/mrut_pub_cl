@@ -78,6 +78,28 @@
         margin: 100px 15px
 
 @include media-breakpoint-between($sm - 257, $sm) //$sm: 576px; min: 320 max: 577
+  #map_canvas
+    .leaflet-control-container
+      .leaflet-control-zoom
+        a
+          width: 27px
+          height: 27px
+          line-height: 25px
+          padding: 0
+        .fullscreen-icon
+          background: #fff url(../../pages/images/fullscreen24x48.png) no-repeat 0 0
+  body
+    .tabs
+      #nav-tab
+        font-size: 12px
+  .leaflet-touch
+    .leaflet-bar
+      #icon1, #icon2, #icon3, #icon4, #icon5, #icon6, #icon7
+        width: 35px
+        height: 35px
+        .fas, .far
+          float: left
+          margin: 15.5px 0 0 5px
   #{$search-width}
     width: 170px
     input
@@ -91,7 +113,6 @@
       &-left
         max-width: 13.2%
         text-align: center
-
         .navbar-brand
           padding: 0
       &-middle
@@ -109,11 +130,25 @@
   .modal-open
     .modal
       overflow-y: hidden
-      &.show
+      &.show#infoModal, &.show#easyButton
+        line-height: 1.2
         .modal-dialog
           margin: 0
+          height: 480px
+          .modal-content
+            .modal-body
+              #summer-list-tab, #winter-list-tab, #system-tab, #info-tab, #dev-tab
+                display: none
+              .tab-content
+                .col_1
+                  padding-left: 0
+                p
+                  font-size: 12px
+      &.show#easyButton
+        .modal-dialog
           .modal-content
             .modal-body
               .tab-content
-                p
-                  font-size: 12px
+                height: 340px
+            .modal-footer
+              padding: 0.5rem 1rem 1rem 1rem
