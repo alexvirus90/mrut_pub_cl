@@ -1,6 +1,7 @@
 'use strict';
 
 import 'bootstrap'
+import md5 from 'md5'
 import './auth.sass'
 import Cookies from 'js-cookie';
 import rsM from './resize';
@@ -11,25 +12,17 @@ let pass = $('#Password');
 let usr = $('#Username');
 let rdio = $('#checkboxID');
 
+console.log('Cookies', Cookies.get());
 $(function () {
-	let height = $(window).height();
-	let transform = (height - 298) / 2.5;
-	$('body .modal.show#auth .modal-dialog').css('transform', 'translate(0,' + transform + 'px)');
-	$('body .modal.show#errorModal .modal-dialog').css('transform', 'translate(0,' + transform + 'px)');
-	// $('#auth').modal({
-	// 	keyboard: false,
-	// 	backdrop: 'static',
-	// 	show: true
-	// });
+	rsM();
+	if(Cookies.get('connect') === null || Cookies.get('connect') === '' || Cookies.get('connect') === 'undefined'){
+		$('#auth').modal({
+			keyboard: false,
+			backdrop: 'static',
+			show: true
+		});
+	}
 });
-// $(document).ready(function () {
-// 	rsM();
-// 	$('#auth').modal({
-// 		keyboard: false,
-// 		backdrop: 'static',
-// 		show: true
-// 	});
-// });
 $(window).resize(()=>{
 	rsM();
 });
@@ -50,9 +43,6 @@ $('#errorModal').modal({
 	backdrop: 'static',
 });
 $('#save').on('click', function () {
-	/*	cookies		*/
-	Cookies.set('Username', usr.val(), { expires: 1 });
-	Cookies.set('Password', pass.val(), { expires: 1 });
 	if((usr.val() === '') || (pass.val() === '')){
 		$('#errorModal').modal('show');
 		$('#auth').modal('hide');
@@ -60,6 +50,22 @@ $('#save').on('click', function () {
 			'\t\t\t\t\t* Поля, \'имя пользователя\' и/или \'пароль\' не доджны быть пустыми!\n' +
 			'\t\t\t\t</p>');
 	}
+	let md = md5(pass.val());
+	let usrr = usr.val();
+	let mdd = "http://admmrut.adc.spb.ru/srv/api.php?action=doLogin&uName="+ usrr +"&uPass=" + md;
+	let jqxhr = $.get(mdd)
+		.done((data) => {
+			let access = JSON.parse(data);
+			if(!(access.success === false || access.success === '')){
+				Cookies.set('connect', pid, { expires: 1 });
+				$('#auth').modal('hide');
+			}
+		})
+		.fail((e) => {
+
+		})
+		.always(() => {
+		});
 });
 $('#repeat').on('click', function () {
 	$('#errorModal').modal('hide');
@@ -98,3 +104,5 @@ $('#show_password').hover(function() {
 		$('#show_password .fa').removeClass('fa-eye-slash').addClass('fa-eye');
 	}
 );
+
+
