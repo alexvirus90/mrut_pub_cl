@@ -8,6 +8,8 @@ import switdh from '../../components/function/switch.js'
 import clear from '../../components/function/clear.js'
 import nsScrl from '../../components/function/scroll.js';
 
+
+
 let input = document.createElement('input');
 $('#search_clear').append(input);
 $('#search').append("<a href='#' class='closed'><i class='fa fa-times'></i></a>");

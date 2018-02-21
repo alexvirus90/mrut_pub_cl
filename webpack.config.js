@@ -31,6 +31,7 @@ const common = merge([
 		output: {
 			path: PATHS.build,
 			filename: "js/[name].js",
+			chunkFilename: 'js/[name].bundle.js',
 			library:  "[name]"
 		},
 		plugins: [

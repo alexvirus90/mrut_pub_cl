@@ -7,15 +7,27 @@ import Cookies from 'js-cookie';
 import rsM from './resize';
 import './maxLength';
 import './clear';
+import Job from "../polygon/job";
+import Polygon from "../polygon/polygon";
 
 let pass = $('#Password');
 let usr = $('#Username');
 let rdio = $('#checkboxID');
+let logout = $('.logout');
 
-console.log('Cookies', Cookies.get());
+logout.on('click', function () {
+	Cookies.remove('pid');
+	$('#auth').modal({
+		keyboard: false,
+		backdrop: 'static',
+		show: true
+	});
+	logout.css('display', 'none');
+});
 $(function () {
 	rsM();
-	if(Cookies.get('connect') === null || Cookies.get('connect') === '' || Cookies.get('connect') === 'undefined'){
+	if((Cookies.get('pid') === null || Cookies.get('pid') === '' || Cookies.get('pid') === undefined || Cookies.get('pid') === 'undefined')){
+		logout.css('display', 'none');
 		$('#auth').modal({
 			keyboard: false,
 			backdrop: 'static',
@@ -43,6 +55,7 @@ $('#errorModal').modal({
 	backdrop: 'static',
 });
 $('#save').on('click', function () {
+	logout.css('display', 'block');
 	if((usr.val() === '') || (pass.val() === '')){
 		$('#errorModal').modal('show');
 		$('#auth').modal('hide');
@@ -57,7 +70,9 @@ $('#save').on('click', function () {
 		.done((data) => {
 			let access = JSON.parse(data);
 			if(!(access.success === false || access.success === '')){
-				Cookies.set('connect', pid, { expires: 1 });
+				Cookies.set('pid', access.pid, { expires: 1 });
+				Job();
+				// Polygon();
 				$('#auth').modal('hide');
 			}
 		})
@@ -67,6 +82,7 @@ $('#save').on('click', function () {
 		.always(() => {
 		});
 });
+
 $('#repeat').on('click', function () {
 	$('#errorModal').modal('hide');
 	$('#auth').modal('show');
@@ -105,4 +121,4 @@ $('#show_password').hover(function() {
 	}
 );
 
-
+export {Cookies};

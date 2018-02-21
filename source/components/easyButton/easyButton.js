@@ -13,7 +13,7 @@ export default function easyButton() {
 		id: 'icon1',
 		states:[{
 			stateName: 'icon',
-			icon: 'fas fa-ban',
+			icon: '<img src="./images/connection.svg">',
 			title: 'Выключение трекера',
 			onClick: function(control) {
 				console.log('click!(1)' );
@@ -46,7 +46,7 @@ export default function easyButton() {
 		id: 'icon4',
 		states:[{
 			stateName: 'icon',
-			icon: 'fas fa-code-branch',
+			icon: '<img src="./images/star.svg">',
 			title: 'Совпадение траектории передвижения нескольких находящихся на связи трекеров в течение часа и более.',
 			onClick: function(control) {
 				console.log('click!(4)' );
@@ -57,7 +57,7 @@ export default function easyButton() {
 		id: 'icon5',
 		states:[{
 			stateName: 'icon',
-			icon: 'fas fa-wifi',
+			icon: '<img src="./images/satellite.svg">',
 			title: 'Потеря GPS-сигнала.',
 			onClick: function(control) {
 				console.log('click!(5)' );
@@ -79,7 +79,7 @@ export default function easyButton() {
 		id: 'icon7',
 		states:[{
 			stateName: 'icon',
-			icon: 'fas fa-phone red',
+			icon: 'fas fa-exclamation red size',
 			title: 'Поступление тревожного вызова.',
 			onClick: function(control) {
 				console.log('click!(7)' );

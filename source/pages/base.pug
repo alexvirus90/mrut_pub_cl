@@ -21,6 +21,9 @@ html
           a(class="nav-link d-sm-none icon_system disabled")
             i(class="fab fa-leanpub")
           a(class="nav-link d-sm-block d-none disabled" id="nav-plan-tab" data-toggle="tab" href="#plan" role="tab" aria-controls="nav-plan" aria-selected="false") План по уборке снега
+        div(class="justify-content-end logout active" )
+          button(class="btn btn-light  indX" type="button" title="Выйти")
+            i(class="far fa-user-circle align-middle" )
     div(class="tab-content" id="nav-tabContent")
       div(id="manual" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-manual-tab")
         include ../components/auth/auth

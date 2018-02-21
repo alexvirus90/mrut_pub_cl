@@ -23,6 +23,7 @@ export default function drawMap() {
 	let night = new L.TileLayer(cloudUrl, {styleId: 999});
 	spbCntr 	= new L.LatLng(59.930967, 30.302636);
 	map 	 		= new L.Map('map_canvas', { center: spbCntr, zoom: 10, layers: [day, polygon]});
+	console.log('map',map);
 
 	map.setMaxBounds([[59.430967, 29.302636], [60.430967, 31.302636]]);
 	let fs     = L.control.fullscreen({ position: 'topleft'}).addTo(map);			//fullscreen button
