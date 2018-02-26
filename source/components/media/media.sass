@@ -77,6 +77,12 @@
       .modal-dialog
         margin: 100px 15px
 @include media-breakpoint-between($sm - 257, $sm) //$sm: 576px; min: 320 max: 577
+  #auth
+    .modal-header
+      h4
+        font-size: 22px
+    .add-clear-span
+      width: 82%
   #map_canvas
     .leaflet-control-container
       .leaflet-control-zoom
@@ -96,9 +102,11 @@
       #icon1, #icon2, #icon3, #icon4, #icon5, #icon6, #icon7
         width: 35px
         height: 35px
-        .fas, .far
+        .fas, .far, img
           float: left
           margin: 15.5px 0 0 5px
+        img
+          font-size: 15px
   #{$search-width}
     width: 170px
     input

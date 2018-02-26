@@ -1,45 +1,73 @@
 'use strict';
-
 import 'bootstrap'
-import md5 from 'md5'
 import './auth.sass'
-import Cookies from 'js-cookie';
-import rsM from './resize';
 import './maxLength';
 import './clear';
-import Job from "../polygon/job";
-import Polygon from "../polygon/polygon";
+import md5 from 'md5'
+import Cookies from 'js-cookie';
+import rsM from './resize';
+import Job, {jobArrP} from "../polygon/job";
+import Info from "../function/info";
+import {map} from "../function/drawMap"
+import {$this} from '../easyButton/easyButton'
+import {mrkOn, mrkOff, mrkA} from '../function/addMarker';
+import {dataInf} from '../function/info';
+
 
 let pass = $('#Password');
 let usr = $('#Username');
 let rdio = $('#checkboxID');
 let logout = $('.logout');
 
-logout.on('click', function () {
-	Cookies.remove('pid');
+$(document).on('click', '.logout', () => {
+	//Удаление layers
+	let layers = $this.layers;
+	for (let k in layers) {
+		map.removeLayer(layers[k]);
+	}
+	try{
+		mrkOn.clearLayers();
+		mrkOff.clearLayers();
+		mrkA.clearLayers();
+		crcl.clearLayers();}
+	catch (e){}
+	$( "#dp1, #dp2" ).datepicker( "destroy" );
+	$this.job.clear();
+	dataInf.clear();
+	$(".performed").remove();
+	$(".done").remove();
+	let listItem = $('.list-group-item');
+	$this.selectValue = -1;
+	Cookies.remove('pid', 'value', 'color');
 	$('#auth').modal({
 		keyboard: false,
 		backdrop: 'static',
 		show: true
 	});
 	logout.css('display', 'none');
+	if(listItem.hasClass('active')){
+		listItem.removeClass('active');
+	}
 });
-$(function () {
+$(() => {
 	rsM();
-	if((Cookies.get('pid') === null || Cookies.get('pid') === '' || Cookies.get('pid') === undefined || Cookies.get('pid') === 'undefined')){
+	if ((Cookies.get('pid') === null || Cookies.get('pid') === '' || Cookies.get('pid') === undefined || Cookies.get('pid') === 'undefined')) {
 		logout.css('display', 'none');
 		$('#auth').modal({
 			keyboard: false,
 			backdrop: 'static',
 			show: true
 		});
+	} else {
+		Job();
+		Info();
 	}
 });
-$(window).resize(()=>{
+$(window).resize(() => {
 	rsM();
 });
-pass.keypress(function(e) {
-	if(e.which === 13) {
+pass.keypress((e) => {
+	if (e.which === 13) {
 		$('#save').click();
 	}
 });
@@ -54,9 +82,9 @@ $('#errorModal').modal({
 	show: false,
 	backdrop: 'static',
 });
-$('#save').on('click', function () {
+$('#save').on('click', () => {
 	logout.css('display', 'block');
-	if((usr.val() === '') || (pass.val() === '')){
+	if ((usr.val() === '') || (pass.val() === '')) {
 		$('#errorModal').modal('show');
 		$('#auth').modal('hide');
 		$('#errorModal .modal-body').html('<p class="errorText">\n' +
@@ -65,25 +93,23 @@ $('#save').on('click', function () {
 	}
 	let md = md5(pass.val());
 	let usrr = usr.val();
-	let mdd = "http://admmrut.adc.spb.ru/srv/api.php?action=doLogin&uName="+ usrr +"&uPass=" + md;
+	let mdd = "http://admmrut.adc.spb.ru/srv/api.php?action=doLogin&uName=" + usrr + "&uPass=" + md;
 	let jqxhr = $.get(mdd)
 		.done((data) => {
 			let access = JSON.parse(data);
-			if(!(access.success === false || access.success === '')){
-				Cookies.set('pid', access.pid, { expires: 1 });
-				Job();
-				// Polygon();
+			if (!(access.success === false || access.success === '')) {
+				Cookies.set('pid', access.pid, {expires: 1});
 				$('#auth').modal('hide');
+				Job();
+				Info();
 			}
 		})
 		.fail((e) => {
-
 		})
 		.always(() => {
 		});
 });
-
-$('#repeat').on('click', function () {
+$('#repeat').on('click', () => {
 	$('#errorModal').modal('hide');
 	$('#auth').modal('show');
 });
@@ -101,7 +127,7 @@ if (localStorage.chkbx && localStorage.chkbx !== '') {
 	usr.val('');
 	pass.val('');
 }
-rdio.click(function() {
+rdio.click(() => {
 	if (rdio.is(':checked')) {
 		localStorage.usrname = usr.val();
 		localStorage.pass = pass.val();
@@ -112,10 +138,10 @@ rdio.click(function() {
 		localStorage.chkbx = '';
 	}
 });
-$('#show_password').hover(function() {
+$('#show_password').hover(() => {
 		pass.attr('type', 'text');
 		$('#show_password .fa').removeClass('fa-eye').addClass('fa-eye-slash');
-	}, function () {
+	}, () => {
 		pass.attr('type', 'password');
 		$('#show_password .fa').removeClass('fa-eye-slash').addClass('fa-eye');
 	}

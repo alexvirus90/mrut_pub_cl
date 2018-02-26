@@ -1,0 +1,34 @@
+div(class="modal" id='tracker')
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-body")
+        div(class='body_date')
+          div(class='body_date__time-range')
+            div(class='row')
+              div(class='date_form from')
+                div(class='clearfix')
+                  h5(class="pull-left") Дата с:
+                div(class="datepicker date-from " id="dp1")
+                div(class="control-group")
+                  label(class="inline")
+                    strong Время с:
+                  div(id="tp1" class="input-group date no-margin" data-target-input="nearest")
+                    input(type="text" class="form-control time datetimepicker-input" data-target="#tp1")
+                    div(class="input-group-append bttn" data-target="#tp1" data-toggle="datetimepicker")
+                      div(class="input-group-text")
+                        i(class="far fa-clock")
+              div(class='date_form to')
+                div(class="clearfix")
+                  h5(class="pull-left") Дата до:
+                div(class="datepicker date-from" id="dp2")
+                div(class="control-group")
+                  label(class="inline")
+                    strong Время до:
+                  div(id="tp2" class="input-group date no-margin" data-target-input="nearest")
+                    input(type="text" class="form-control time datetimepicker-input" data-target="#tp2")
+                    div(class="input-group-append bttn" data-target="#tp2" data-toggle="datetimepicker")
+                      div(class="input-group-text")
+                        i(class="far fa-clock")
+      div(class="modal-footer")
+        button(type="button" class="btn btn-primary create") Построить
+        button(type="button" class="btn btn-primary cancel") Отмена

@@ -1,10 +1,12 @@
 export let options = {};
+
 // export let tAr			= new vis.DataSet(options);
 
 export let t1 = 'wss://mrut-test2.adc.spb.ru/wstele1/';
 export let t2 = 'wss://mrut-test2.adc.spb.ru/wstele2/';
 export let t3 = 'ws://190.0.0.201:8187';
 export let t4 = 'wss://ut.kb.gov.spb.ru/wstele1/';
+export let url = 'http://176.97.34.40:6064/?command=';
 
 export let car_imgColor = [];
 export let car_Fun 		  = [];

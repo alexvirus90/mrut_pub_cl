@@ -5,11 +5,9 @@ import easyButton from '../../components/easyButton/easyButton'
 // import 'leaflet.locatecontrol';
 import zoom from './zoomend';
 import move from './moveend';
-import legendslide from './legendslide';
+// import legendslide from './legendslide';
 import legend from './legend';
-import {mrkOn, mrkOff} from './waitforpool';
-import update from '../function/update';
-import {polygon} from '../polygon/polygon';
+import {mrkOn, mrkOff, mrkA} from './addMarker';
 
 let map, spbCntr;
 
@@ -22,13 +20,10 @@ export default function drawMap() {
 	});
 	let night = new L.TileLayer(cloudUrl, {styleId: 999});
 	spbCntr 	= new L.LatLng(59.930967, 30.302636);
-	map 	 		= new L.Map('map_canvas', { center: spbCntr, zoom: 10, layers: [day, polygon]});
-	console.log('map',map);
-
+	map 	 		= new L.Map('map_canvas', { center: spbCntr, zoom: 10, layers: [day, mrkOn]});
 	map.setMaxBounds([[59.430967, 29.302636], [60.430967, 31.302636]]);
-	let fs     = L.control.fullscreen({ position: 'topleft'}).addTo(map);			//fullscreen button
+	L.control.fullscreen({ position: 'topleft'}).addTo(map);			//fullscreen button
 	// let lc 		 = L.control.locate().addTo(map);
-
 	legend();
 
 	let baseMaps = {
@@ -36,20 +31,17 @@ export default function drawMap() {
 		// "Карта СПб(ночь)": night
 	};
 	let overlayMaps = {
-		"На линии": mrkOn,
-		"На дежурстве": mrkOff,
-		"Полигоны": polygon,
+		"Ручная уборка": mrkOn,
+		"Ручная уборка (не на связи)": mrkOff,
+		"Механизированная уборка": mrkA,
 		// "Трекера": markerTrakers
 	};
 	let layersControl = new L.Control.Layers(baseMaps, overlayMaps);
 	map.addControl(layersControl);
 
 	easyButton();
-
-	zoom();
-	move();
-
-	legendslide();
-
+	// zoom();
+	// move();
+	// legendslide();
 }
 export {map};

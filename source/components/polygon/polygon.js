@@ -1,107 +1,76 @@
 'use strict';
+import {Cookies, $this} from '../easyButton/easyButton'
+import getColor from '../polygon/GetColorPull'
+import {jobArrP} from "../polygon/job"
+import {map} from "../function/drawMap"
 
 let id_rm = [];
-let polygon;
 
-// let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getZoneFun&pid=' + Cookies.get('pid') + '&fi
-// let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getZoneFun&pid=1&fid=17';
-	let url1 = {
-		"type": "FeatureCollection",
-		"features": [
-			{
-				"type": "Feature",
-				"geometry": {
-					"type": "Polygon",
-					"coordinates": [
-						[
-							[
-								30.27591288,
-								59.96343204
-							],
-							[
-								30.275739,
-								59.963391
-							],
-							[
-								30.27523608,
-								59.963139
-							],
-							[
-								30.27521304,
-								59.96309004
-							],
-							[
-								30.27509496,
-								59.96303397
-							],
-							[
-								30.27506004,
-								59.96305296
-							],
-							[
-								30.27441204,
-								59.96275299
-							],
-							[
-								30.27463992,
-								59.96254797
-							],
-							[
-								30.27506184,
-								59.96261196
-							],
-							[
-								30.27633912,
-								59.96315097
-							],
-							[
-								30.27591288,
-								59.96343204
-							]
-						]
-					]
-				},
-				"properties": {
-					"id": 54349,
-					"name": "МЗ по МК 3190А ПС-У"
+export default function Polygon() {
+	let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getZoneFun&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value');
+
+	$.getJSON(url)
+		.done((d) => {
+			let style = {
+				color: 'red',
+				weight: 1,
+				opacity: 0.7,
+				fillColor: 'white',
+				fillOpacity: 0.4
+			};
+			id_rm = [];
+			let polygon = L.geoJSON(d, {style: style});
+			$this.layers = polygon._layers;
+			$this.polygon = polygon;
+			for (let k in $this.layers) {
+				let did = $this.layers[k].feature.properties.id;
+				id_rm.push(did);
+				$this.layers[k].on({
+					mouseover: function (e) {
+						let layer = e.target;
+						layer.setStyle({
+							weight: 5,
+							color: '#666',
+							dashArray: '',
+							fillOpacity: 0.7
+						});
+						if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+							layer.bringToFront();
+						}
+					},
+					mouseout: function (e) {
+						let layer = e.target;
+						layer.setStyle({
+							weight: 1,
+							color: 'red',
+							dashArray: '',
+							fillOpacity: 0.4
+						});
+					},
+					click: function (e) {
+						map.fitBounds(e.target.getBounds());
+					}
+				}, this);
+				$this.layers[k].addTo(map); // Add it to the map
+			}
+			Cookies.set('color', id_rm.join(),{expires: 1});
+			map.fitBounds(polygon.getBounds());
+			getColor();
+			/*polygon.on({
+				click: (e) => {
+					let poly = e.sourceTarget.feature.properties.name;
+					let poly1 = e.sourceTarget.feature.properties.id;
+					id_rm = jobArrP.filter((item) => {
+						console.log('item', item);
+						console.log(poly1, '|', poly);
+						return item.Name_RM_RouteTaskHeader === 17832;
+						console.log('poly', typeof poly);
+						console.log('item', typeof item.Name_RM_RouteTaskHeader);
+					});
+					console.log('id_rm', id_rm);
 				}
-			}
-		]
-	};
-// $.getJSON( url, {dataType: "json"})
-// 	.done((d)=>{
-// 		polygon = L.geoJSON( d, {});
-// 		console.log('polygon',polygon );
-// 		/*polygon.on({
-// 			click: (e) => {
-// 				let poly = e.sourceTarget.feature.properties.id;
-// 				id_rm = jobArrP.filter(function (item) {
-// 					return item.ID_RM_RouteTaskHeader === poly;
-// 				});
-// 				if ($(".aside").hasClass("in")) {
-// 					$('.aside').asidebar('close')
-// 				} else {
-// 					$('.aside').asidebar('open')
-// 				}
-//
-// 			}
-// 		});*/
-// 	});
-	 polygon = L.geoJSON(url1, {});
-	console.log('polygon', polygon);
-
-	/*polygon.on({
-		click: (e) => {
-			let poly = e.sourceTarget.feature.properties.id;
-			id_rm = jobArrP.filter(function (item) {
-				return item.ID_RM_RouteTaskHeader === poly;
 			});
-			if ($(".aside").hasClass("in")) {
-				$('.aside').asidebar('close')
-			} else {
-				$('.aside').asidebar('open')
-			}
-
-		}
-	});*/
-export {polygon, id_rm};
+			*/
+		});
+}
+export {id_rm};

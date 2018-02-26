@@ -11,7 +11,7 @@ const sass = require('./webpack/sass');
 const source_map = require('./webpack/source_map');
 const css = require('./webpack/css');
 const extractCSS = require('./webpack/css.extract');
-// const uglifyJS = require('./webpack/js.uglify');
+const uglifyJS = require('./webpack/js.uglify');
 const images = require('./webpack/images');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fonts = require('./webpack/fonts');
@@ -23,26 +23,25 @@ const common = merge([
 	{
 		context: PATHS.source,
 		entry: {
-			header: './pages/header/header.js',
-			media: './components/media/media.js',
-			map: './pages/map/map.js',
 			auth: './components/auth/auth.js',
+			header: './pages/header/header.js',
+			map: './pages/map/map.js',
+			media: './components/media/media.js',
 		},
 		output: {
 			path: PATHS.build,
 			filename: "js/[name].js",
-			chunkFilename: 'js/[name].bundle.js',
 			library:  "[name]"
 		},
 		plugins: [
 			new webpack.NoEmitOnErrorsPlugin(),
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
-				chunks: [ 'auth', 'manifest', 'common', 'header', 'media', 'map'],
+				chunks: [ 'manifest', 'common', 'auth', 'header',  'map', 'media'],
 				chunksSortMode: function (chunk1, chunk2) {
-					var orders = [ 'manifest', 'common', 'auth', 'header', 'map', 'media'];
-					var order1 = orders.indexOf(chunk1.names[0]);
-					var order2 = orders.indexOf(chunk2.names[0]);
+					let orders = [ 'manifest', 'common', 'auth', 'header', 'map', 'media'];
+					let order1 = orders.indexOf(chunk1.names[0]);
+					let order2 = orders.indexOf(chunk2.names[0]);
 					if (order1 > order2) {
 						return 1;
 					} else if (order1 < order2) {
@@ -67,12 +66,13 @@ const common = merge([
 				"Tether": 'tether',
 				L: 'leaflet/dist/leaflet.js',
 				vis: 'vis/dist/vis.js',
+				moment: "moment",
 				// Popper: ['popper.js', 'default']
 			}),
 			new CopyWebpackPlugin([
 				{from:'pages/images',to:'images'},
-				{from:'components/function/info.json',to:''},
-				{from:'components/function/job.json',to:''},
+				// {from:'components/function/info.json',to:''},
+				// {from:'components/function/job.json',to:''},
 			]),
 			new webpack.NamedModulesPlugin(),
 			new webpack.HotModuleReplacementPlugin()
@@ -97,7 +97,7 @@ module.exports = function (env) {
 		return merge([
 			common,
 			extractCSS(),
-			// uglifyJS()
+			uglifyJS()
 		]);
 	}
 	if (env === 'development') {

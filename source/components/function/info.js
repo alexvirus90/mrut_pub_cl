@@ -1,26 +1,33 @@
-import waitforpool from './waitforpool';
+'use strict';
+import 'leaflet-extra-markers'
+import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css'
+import Connect from './connect';
 import options from './variable';
-// import data from './info.json';
+import AddMarker from './addMarker';
+import {Cookies, $this} from '../easyButton/easyButton'
+import {map} from "../function/drawMap"
 
-let carsArray = [];
-let dataInfo = new vis.DataSet(options);
-let global = {data: []};
+let dataInf = new vis.DataSet(options);
 
-$.ajax({
-	url: "info.json",
-	dataType: 'json'
-})
-	.done((data) => {
-		dataInfo.add(data.result);
-		for (let k in dataInfo._data) {
-			if (typeof dataInfo._data[k] === 'object') {
-				global.data[dataInfo._data[k]['did']] = dataInfo._data[k];
-				carsArray.push(dataInfo._data[k]);
-			}
-		}
-		waitforpool();
-	})
-	.fail((jqXHR, textStatus, errorThrown) => {
-		// modEr(jqXHR, textStatus, errorThrown);
-	});
-export {carsArray, dataInfo, global};
+export default function Info() {
+
+	let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getinfo&pid=' + Cookies.get('pid');
+	$.get(url)
+		.done((data1) => {
+			let data = JSON.parse(data1);
+			dataInf.clear();
+			try {
+				dataInf.add(data);}
+			catch (e){}
+			dataInf.forEach((obj,gid)=>{
+				if(obj.time !== null){
+					AddMarker(obj);
+				}
+			});
+			Connect();
+		})
+		.fail((jqXHR, textStatus, errorThrown) => {
+			// modEr(jqXHR, textStatus, errorThrown);
+		});
+}
+export {dataInf};

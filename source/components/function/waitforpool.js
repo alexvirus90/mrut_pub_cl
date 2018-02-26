@@ -1,18 +1,40 @@
 import '../libs/MovingMarker';
-import getDurat from './duration';
-import getFuncCar from './funcar';
-import getIcon from './icon';
-import {t1, t2, t3, t4} from './variable';
-import {global} from './info';
+import AddMarker from './addMarker';
+import {url} from './variable';
+import {dataInf} from './info';
+import {popup} from './popup';
 import {map} from './drawMap';
 
-let options = {};
-let data = new vis.DataSet(options);
-let mrkOn  = new L.LayerGroup(),
-		mrkOff = new L.LayerGroup();
-export default function waitforpool() {
-	let _marker;
+export default function waitforpool(id) {
 
+	let receive = url + 'receive&connection=' + id;
+	$.post(receive)
+		.done((e)=> {
+			let data = JSON.parse(e);
+
+			if($.isPlainObject(data)){
+				let obj = data.root;
+				for(let k in obj){
+					if(obj[k].header.type === 0){
+						let item = dataInf.get(obj[k].header.id);
+						item.LAT = (obj[k].lat === 0)?item.LAT:obj[k].lat;
+						item.LNG = (obj[k].lon === 0)?item.LNG:obj[k].lon;
+						item.time = obj[k].time;
+						item.dab_level = obj[k].dab_level;
+						item.speed = obj[k].speed;
+
+						if (!item.marker) {
+							AddMarker(item);
+						}	else {
+							item.marker.setLatLng([obj[k].lat, obj[k].lon]).update();
+							// item.marker._popup.setContent(popup)
+						}
+						dataInf.update(item);
+					}
+				}
+			}
+			setTimeout(waitforpool(id), 500);
+		});
 	/*let webSocket = new WebSocket(t4);
 
 	webSocket.onopen = function() {
@@ -115,6 +137,4 @@ export default function waitforpool() {
 	webSocket.onerror = function(error) {
 		console.log("Ошибка " + error.message);
 	};*/
-
 }
-export {data, mrkOn, mrkOff};

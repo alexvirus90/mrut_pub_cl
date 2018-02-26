@@ -6,14 +6,27 @@
   width: 44px
   height: 44px
   .fas, .far
-    margin: 15.5px 0
+    margin: 15.5px 0 0 5px
+    float: left
   img
-    margin-top: 10px
+    margin: 15.5px 14px 0 5px
+    float: left
+  .icon2-icon, .icon3-icon, .icon6-icon, .icon7-icon
+    margin-left: -8px !important
 #funBtn
   padding: 0
   width: 44px
   height: 44px
   .far
+    font-size: 20px
+    margin: 12px 0
+    color: #737678
+#clean
+  display: none
+  padding: 0
+  width: 44px
+  height: 44px
+  .fas
     font-size: 20px
     margin: 12px 0
     color: #737678
@@ -23,6 +36,7 @@
   color: red
 .size
   font-size: 16px
+
 .modal
   overflow-y: hidden!important
   &.show
@@ -69,3 +83,24 @@
                 margin: 0
                 a
                   color: #4a5c6a
+          .modal-footer
+            .clean
+              color: #757575
+              border: 1px solid #aaa
+    &#trackerList
+      .modal-dialog
+        max-width: 700px
+        margin: 50px auto
+        .modal-content
+          border: 0
+          .modal-body
+            overflow: hidden
+            padding: 15px 0
+            @include scrollbars(.7em, grey)
+            .list
+              overflow-y: auto
+              height: 850px
+              padding: 0 15px
+              .row
+                .col-2, .col-5, .col-5
+                  border: 1px solid #aaa
