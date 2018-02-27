@@ -1,8 +1,7 @@
 'use strict';
 
 import waitforpool from './waitforpool'
-import {Cookies, $this} from '../easyButton/easyButton'
-import {url} from './variable';
+import {url, $this, Cookies} from './variable';
 
 export default function Connect() {
 

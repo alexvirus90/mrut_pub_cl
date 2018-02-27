@@ -4,15 +4,12 @@ import './auth.sass'
 import './maxLength';
 import './clear';
 import md5 from 'md5'
-import Cookies from 'js-cookie';
 import rsM from './resize';
 import Job, {jobArrP} from "../polygon/job";
 import Info from "../function/info";
 import {map} from "../function/drawMap"
-import {$this} from '../easyButton/easyButton'
+import {api, Cookies, $this, dataInfo} from "../function/variable"
 import {mrkOn, mrkOff, mrkA} from '../function/addMarker';
-import {dataInf} from '../function/info';
-
 
 let pass = $('#Password');
 let usr = $('#Username');
@@ -33,7 +30,7 @@ $(document).on('click', '.logout', () => {
 	catch (e){}
 	$( "#dp1, #dp2" ).datepicker( "destroy" );
 	$this.job.clear();
-	dataInf.clear();
+	dataInfo.clear();
 	$(".performed").remove();
 	$(".done").remove();
 	let listItem = $('.list-group-item');
@@ -51,6 +48,8 @@ $(document).on('click', '.logout', () => {
 });
 $(() => {
 	rsM();
+	Job();
+	Info();
 	if ((Cookies.get('pid') === null || Cookies.get('pid') === '' || Cookies.get('pid') === undefined || Cookies.get('pid') === 'undefined')) {
 		logout.css('display', 'none');
 		$('#auth').modal({
@@ -58,9 +57,6 @@ $(() => {
 			backdrop: 'static',
 			show: true
 		});
-	} else {
-		Job();
-		Info();
 	}
 });
 $(window).resize(() => {
@@ -93,7 +89,7 @@ $('#save').on('click', () => {
 	}
 	let md = md5(pass.val());
 	let usrr = usr.val();
-	let mdd = "http://admmrut.adc.spb.ru/srv/api.php?action=doLogin&uName=" + usrr + "&uPass=" + md;
+	let mdd = api + "doLogin&uName=" + usrr + "&uPass=" + md;
 	let jqxhr = $.get(mdd)
 		.done((data) => {
 			let access = JSON.parse(data);
@@ -146,5 +142,3 @@ $('#show_password').hover(() => {
 		$('#show_password .fa').removeClass('fa-eye-slash').addClass('fa-eye');
 	}
 );
-
-export {Cookies};

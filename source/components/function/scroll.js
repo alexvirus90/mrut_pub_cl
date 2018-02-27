@@ -1,3 +1,5 @@
+'use strict';
+
 export default function nsScrl() {
 	let info 				= $('.aside').innerHeight();
 	let asideHeader = info - $('.aside-header').innerHeight();

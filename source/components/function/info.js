@@ -2,24 +2,20 @@
 import 'leaflet-extra-markers'
 import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css'
 import Connect from './connect';
-import options from './variable';
+import {dataInfo, api, Cookies, $this} from './variable';
 import AddMarker from './addMarker';
-import {Cookies, $this} from '../easyButton/easyButton'
-import {map} from "../function/drawMap"
-
-let dataInf = new vis.DataSet(options);
 
 export default function Info() {
 
-	let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getinfo&pid=' + Cookies.get('pid');
+	let url = api + 'getinfo&pid=' + Cookies.get('pid');
 	$.get(url)
 		.done((data1) => {
 			let data = JSON.parse(data1);
-			dataInf.clear();
+			dataInfo.clear();
 			try {
-				dataInf.add(data);}
+				dataInfo.add(data);}
 			catch (e){}
-			dataInf.forEach((obj,gid)=>{
+			dataInfo.forEach((obj,gid)=>{
 				if(obj.time !== null){
 					AddMarker(obj);
 				}
@@ -30,4 +26,3 @@ export default function Info() {
 			// modEr(jqXHR, textStatus, errorThrown);
 		});
 }
-export {dataInf};

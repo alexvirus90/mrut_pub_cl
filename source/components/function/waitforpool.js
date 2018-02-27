@@ -1,9 +1,6 @@
 import '../libs/MovingMarker';
 import AddMarker from './addMarker';
-import {url} from './variable';
-import {dataInf} from './info';
-import {popup} from './popup';
-import {map} from './drawMap';
+import {url, dataInfo} from './variable';
 
 export default function waitforpool(id) {
 
@@ -16,20 +13,21 @@ export default function waitforpool(id) {
 				let obj = data.root;
 				for(let k in obj){
 					if(obj[k].header.type === 0){
-						let item = dataInf.get(obj[k].header.id);
-						item.LAT = (obj[k].lat === 0)?item.LAT:obj[k].lat;
-						item.LNG = (obj[k].lon === 0)?item.LNG:obj[k].lon;
-						item.time = obj[k].time;
-						item.dab_level = obj[k].dab_level;
-						item.speed = obj[k].speed;
-
+						let item = dataInfo.get(obj[k].header.id);
+						try{
+							item.LAT = (obj[k].lat === 0)?item.LAT:obj[k].lat;
+							item.LNG = (obj[k].lon === 0)?item.LNG:obj[k].lon;
+							item.time = obj[k].time;
+							item.dab_level = obj[k].dab_level;
+							item.speed = obj[k].speed;}
+						catch (e){}
 						if (!item.marker) {
 							AddMarker(item);
 						}	else {
 							item.marker.setLatLng([obj[k].lat, obj[k].lon]).update();
 							// item.marker._popup.setContent(popup)
 						}
-						dataInf.update(item);
+						dataInfo.update(item);
 					}
 				}
 			}

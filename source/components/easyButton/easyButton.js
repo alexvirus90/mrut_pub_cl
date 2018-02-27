@@ -1,17 +1,14 @@
 'use strict';
-import 'bootstrap';
+
 import '../libs/easybutton/easy-button.css'
 import '../libs/easybutton/easy-button'
 import './easyButton.sass'
-import setAttr from '../../components/function/add.js';
-import {Cookies} from '../auth/auth'
+import {$this, Cookies} from '../function/variable.js';
+import setAttr from '../function/add.js';
 import {crcl} from '../tracker/tracker'
 import Polygon from "../polygon/polygon";
 import {map} from '../function/drawMap';
 import Update, {group1, group2, group3, group4, group7} from './update';
-
-let $this = $(this);
-$this.selectValue = -1;
 
 export default function easyButton() {
 
@@ -152,7 +149,7 @@ export default function easyButton() {
 		}]
 	});
 	let buttons = [b1, b2, b3, b4, b5, b6, b7];
-	Update(b1, b2, b3, b4, b5, b6, b7);
+	// Update(b1, b2, b3, b4, b5, b6, b7);
 	L.easyBar(buttons, {
 		position: 'bottomleft'
 	}).addTo(map);
@@ -290,4 +287,3 @@ export default function easyButton() {
 		}
 	});
 }
-export {Cookies, $this}

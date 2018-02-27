@@ -1,13 +1,11 @@
 'use strict';
-import {Cookies, $this} from '../easyButton/easyButton'
-import getColor from '../polygon/GetColorPull'
-import {jobArrP} from "../polygon/job"
-import {map} from "../function/drawMap"
 
-let id_rm = [];
+import getColor from '../polygon/GetColorPull'
+import {map} from "../function/drawMap"
+import {api, Cookies, $this, id_rm} from "../function/variable"
 
 export default function Polygon() {
-	let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getZoneFun&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value');
+	let url = api + 'getZoneFun&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value');
 
 	$.getJSON(url)
 		.done((d) => {
@@ -73,4 +71,3 @@ export default function Polygon() {
 			*/
 		});
 }
-export {id_rm};

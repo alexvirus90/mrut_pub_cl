@@ -1,14 +1,12 @@
 'use strict';
 
-import {Cookies} from '../auth/auth';
-import options from '../function/variable';
+import {priznak, api, Cookies} from '../function/variable';
 
-let priznak = new vis.DataSet(options);
 let group1, group2, group3, group4, group7;
 
 export default function Update(b1, b2, b3, b4, b5, b6, b7) {
 
-	let url = "http://admmrut.adc.spb.ru/srv/api.php?action=getalarm&pid=" + Cookies.get('pid');
+	let url = api + "getalarm&pid=" + Cookies.get('pid');
 	$.ajax(url)
 		.done((e)=>{
 			let data = JSON.parse(e);
@@ -46,7 +44,7 @@ export default function Update(b1, b2, b3, b4, b5, b6, b7) {
 			b5.update(0);
 			b6.update(0);
 			b7.update(group7.length);
-			// setInterval(Update(b1, b2, b3, b4, b5, b6, b7), 10000);
+			setInterval(Update(b1, b2, b3, b4, b5, b6, b7), 10000);
 
 		});
 }

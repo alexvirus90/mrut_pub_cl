@@ -1,10 +1,10 @@
 'use strict';
 
-import {Cookies, $this} from '../easyButton/easyButton'
+import {api, Cookies, $this} from '../function/variable'
 
 export default function getColor() {
 
-	let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=getColor&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value') + "&lmzid=" + Cookies.get('color');
+	let url = api + 'getColor&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value') + "&lmzid=" + Cookies.get('color');
 
 	$.get(url)
 		.done((d)=>{

@@ -4,12 +4,11 @@ import 'jquery-ui/ui/widgets/datepicker';
 import 'jquery-ui/ui/i18n/datepicker-ru';
 import 'tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min';
 import './tracker.sass'
-import {Cookies} from '../auth/auth';
+import {api, crcl, Cookies} from '../function/variable';
 import {map} from "../function/drawMap"
 import rsM from '../function/resize'
 
 let pointList = [];
-let crcl = new L.LayerGroup();
 
 export default function Date(vid) {
 	$( "#dp1, #dp2" ).datepicker( "destroy" );
@@ -51,7 +50,7 @@ export default function Date(vid) {
 		let df = ar[2] +"-"+ar[1]+"-"+ar[0] + ' ' +tp1 + ":00";
 		let dt = ar2[2] +"-"+ar2[1]+"-"+ar2[0] + ' ' +tp2 + ":00";
 
-		let url = "http://admmrut.adc.spb.ru/srv/api.php?action=gettrack&pid=" + Cookies.get('pid') + '&vid=' + vid + '&df=' + df + '&dt=' + dt;
+		let url = api + "gettrack&pid=" + Cookies.get('pid') + '&vid=' + vid + '&df=' + df + '&dt=' + dt;
 		$('#loading').modal({
 			keyboard: false,
 			show: true,

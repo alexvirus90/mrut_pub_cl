@@ -1,14 +1,13 @@
 'use strict';
-import options from '../function/variable';
-import {Cookies} from '../auth/auth';
-import {$this} from '../easyButton/easyButton'
+import {job, api, $this, Cookies} from '../function/variable';
 
-let job = new vis.DataSet(options);
 let jobArrP = [];
 let szp = "",
 		szd = "";
+let $confirm_request, $decline_request;
+
 export default function Job() {
-	let url = "http://admmrut.adc.spb.ru/srv/api.php?action=get_app_list&pid=" + Cookies.get('pid');
+	let url = api + "get_app_list&pid=" + Cookies.get('pid');
 	$.ajax({
 		url: url,
 		dataType: 'json'
@@ -34,8 +33,10 @@ export default function Job() {
 							'<div class="col-5 col_1"><span>Номер устройства: </span></div>' +
 							'<div class="col-7 col_2"><span class="no">' + ((item['NickName'] === null) ? '' : item['NickName']) + '</span></div>' +
 							'<div class="col-5 col_1"><span>Статус: </span></div>' +
-							'<div class="col-7 col_2"><span class="status">' + item['Name_State'] + '</span></div>' +
-							'</div>';
+							'<div class="col-7 col_2"><span class="status">' + item['Name_State'] + '</span></div>' +'<div class="btn-group-wrap">' +
+							'<div class="btn-group btn-group-sm" role="group">' +
+							'<button type="button" class="btn btn-success confirm" value=' + job._data[k].ID + '>Подтвердить</button>' +
+							'</div></div></div>';
 					} else {
 						szd += '<div class="row done"><div class="col-12 caption"><span class="name">Сменное задание № ' + item['ID'] + '</span><hr></div>' +
 							'<div class="col-5 col_1"><span>Дата начала С/З: </span></div>' +
@@ -50,43 +51,12 @@ export default function Job() {
 							'<div class="col-7 col_2"><span class="status">' + item['Name_State'] + '</span></div>' +
 							'<div class="btn-group-wrap">' +
 							'<div class="btn-group btn-group-sm" role="group">' +
-							// '<button type="button" class="btn btn-success" value="Подтвердить">Подтвердить</button>' +
-							'<button type="button" class="btn btn-danger" value=' + job._data[k].ID + '>Отклонить</button>' +
+						'<button type="button" class="btn btn-danger decline" value=' + job._data[k].ID + '>Отклонить</button>' +
 							'</div></div></div>';
 					}
 				}
 			}
-			$(document).on('click', '.btn-danger', function (e) {
-				let url = 'http://admmrut.adc.spb.ru/srv/api.php?action=confirm&pid=' + Cookies.get('pid') + "&sid=" + e.target.value + "&st=3";
-				$.get(url)
-					.done((d)=>{});
-				$(".performed").remove();
-				$(".done").remove();
-				job.clear();
-				Job();
-			});
-			/*
-				let v = $(this).val();
-				switch (v) {
-				case 'Подтвердить':
-					$('.text').html('Вы уверены, что хотите <b>Подтвердить</b>?');
-					$('#window').modal({
-						backdrop: false,
-						show: true,
-						keyboard: false
-					});
-					break;
-				case 'Отклонить':
-					$('.text').html('Вы уверены, что хотите <b>Отклонить</b>?');
-					$('#window').modal({
-						backdrop: false,
-						show: true,
-						keyboard: false
-					});
-					break;
-			$(".no").on('click', () => {
-				$('#window').modal('hide')
-			});*/
+
 			$('#performed').html(szp);
 			$('#done').html(szd);
 		})
@@ -94,4 +64,25 @@ export default function Job() {
 			// modEr(jqXHR, textStatus, errorThrown);
 		});
 }
-export {jobArrP, job}
+$(document).on('click', '.confirm', function (e) {
+	e.preventDefault();
+	job.clear();
+
+	let url = api + 'confirm&pid=' + Cookies.get('pid') + "&sid=" + e.target.value + "&st=2";
+	$confirm_request = $.ajax(url);
+	$(".performed").remove();
+	$(".done").remove();
+	Job();
+});
+$(document).on('click', '.decline', function (e) {
+	e.preventDefault();
+	job.clear();
+
+	let url = api + 'confirm&pid=' + Cookies.get('pid') + "&sid=" + e.target.value + "&st=3";
+	$decline_request = $.ajax(url);
+
+	$(".performed").remove();
+	$(".done").remove();
+	Job();
+});
+export {jobArrP}

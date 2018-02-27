@@ -1,9 +1,8 @@
 'use strict';
 
-import {$this} from '../easyButton/easyButton'
+import '../sass/popup.css'
 import Date from "../tracker/tracker"
 import {map} from "../function/drawMap"
-import '../sass/popup.css'
 
 let popup = "";
 export default function Popup(obj){
@@ -15,17 +14,11 @@ export default function Popup(obj){
 	let speed = (obj.speed === null) ? 0 : obj.speed;
 
 	 popup = "<div class='header1 clearfix'><div class='actions'>" +
-		/*  "<a class='hint hint-top svg-icon svg-icon-target icon-target' href='javascript:;'"+
-			" data-hint='Приблизить к объекту'></a><a class='hint hint-top svg-icon svg-icon-cog icon-card' href='javascript:;'" +
-			" data-hint='Открыть карточку объекта'></a><a class='hint hint-top svg-icon svg-icon-bell icon-alerts' href='javascript:;'" +
-			" data-hint='События и журнал'></a><a class='hint hint-top svg-icon svg-icon-track icon-track' href='#' data-hint='Построить трек'></a>" +
-			"<a class='hint hint-top svg-icon svg-icon-report icon-report' href='javascript:;' data-hint='Построить отчет'></a>" +*/
 		"<a class='hint hint-top svg-icon svg-icon-circle-remove icon-close' href='javascript:;' data-hint='Закрыть'></a></div>" +
 		"<h4 data-prop='name' class='name'>№_"+ obj.DID +"</h4></div><div class='contents'><div data-key='summary'" +
 		 " class='content" +
 		 " active'>" +
 		"<div class='row-fluid'><div class='features span8'><ul>" +
-		/* "<li data-prop='extId'>Id: <strong>{ID}</strong></li>"+*/
 		"<li data-prop='licenseNumber'>Номер устройства: <strong class='licenseNumber'>"+ obj.NAME +"</strong></li>" +
 		"<li data-prop='speed'>Скорость: <strong><span class='speed'>"+ speed +"</span>" +
 		 " км/ч</strong></li>" +

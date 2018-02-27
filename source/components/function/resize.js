@@ -1,3 +1,5 @@
+'use strict';
+
 export default function rsM() {
 	scroll(0, 0);
 	let header 					= $(".header:visible");

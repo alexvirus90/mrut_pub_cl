@@ -1,13 +1,9 @@
 'use strict';
 
 import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css'
-import Popup, {popup} from './popup';
-import {dataInf} from './info';
-import {$this} from '../easyButton/easyButton'
+import Popup, {popup} from './popup'
+import {mrkOn, mrkOff, mrkA, dataInfo} from './variable'
 
-let mrkOn = new L.LayerGroup(),
-	mrkOff = new L.LayerGroup(),
-	mrkA = new L.LayerGroup();
 
 export default function AddMarker(obj) {
 	Popup(obj);
@@ -49,7 +45,7 @@ export default function AddMarker(obj) {
 		mrkOff.addLayer(_ExtraMarkers);
 	}
 	obj.marker = _ExtraMarkers;
-	dataInf.update(obj);
+	dataInfo.update(obj);
 }
 
 export {mrkOn, mrkOff, mrkA};

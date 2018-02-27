@@ -1,11 +1,8 @@
 'use strict';
 
+// import 'leaflet.locatecontrol';
 import 'leaflet.fullscreen';
 import easyButton from '../../components/easyButton/easyButton'
-// import 'leaflet.locatecontrol';
-import zoom from './zoomend';
-import move from './moveend';
-// import legendslide from './legendslide';
 import legend from './legend';
 import {mrkOn, mrkOff, mrkA} from './addMarker';
 

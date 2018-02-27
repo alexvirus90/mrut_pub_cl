@@ -1,14 +1,31 @@
-export let options = {};
+import Cookies from 'js-cookie';
+export {Cookies}
 
-// export let tAr			= new vis.DataSet(options);
+let options = {};
+export let id_rm = [];
+
+export let $this = $(this);
+$this.selectValue = -1;
+
+export let dataInfo = new vis.DataSet(options);
+export let priznak = new vis.DataSet(options);
+export let job = new vis.DataSet(options);
 
 export let t1 = 'wss://mrut-test2.adc.spb.ru/wstele1/';
 export let t2 = 'wss://mrut-test2.adc.spb.ru/wstele2/';
 export let t3 = 'ws://190.0.0.201:8187';
 export let t4 = 'wss://ut.kb.gov.spb.ru/wstele1/';
 export let url = 'http://176.97.34.40:6064/?command=';
+export let url1 = 'http://176.97.34.41:6064/?command=';
+export let api = 'http://admmrut.adc.spb.ru/srv/api.php?action=';
 
-export let car_imgColor = [];
+export let mrkOff = new L.LayerGroup();
+export let mrkOn = new L.LayerGroup();
+export let mrkA = new L.LayerGroup();
+export let crcl = new L.LayerGroup();
+
+
+/*export let car_imgColor = [];
 export let car_Fun 		  = [];
 export let car_Color 	  = [];
 
@@ -20,7 +37,6 @@ car_imgColor[9] = "light_blue"; car_imgColor[10] = "yellow";
 car_imgColor[11] = "lilac"; 		car_imgColor[12] = "brown";
 car_imgColor[13] = "yellow"; 		car_imgColor[14] = "lemon";//car_imgColor[15] = "white";
 car_imgColor[15] = "violet"; 		car_imgColor[16] = "t";
-
 car_Fun[1] = "Погрузчики";
 car_Fun[2] = "Самосвалы и МСК";
 car_Fun[3] = "Мусоровозы";
@@ -36,7 +52,6 @@ car_Fun[12] = "Распределители жидких реагентов";
 car_Fun[13] = "Тягач (для уборочной техники)";
 car_Fun[15] = "Контроль";
 car_Fun[16] = "Ручная уборка";
-
 car_Color[1] = "black"; 		car_Color[2] = "#9B30FF";
 car_Color[3] = "turquoise"; car_Color[4] = "red";
 car_Color[5] = "orange"; 		car_Color[6] = "blue";
@@ -44,4 +59,4 @@ car_Color[7] = "green"; 		car_Color[8] = "lime";
 car_Color[9] = "#00D5D5"; 	car_Color[10] = "yellow";
 car_Color[11] = "#FF6A00"; 	car_Color[12] = "brown";
 car_Color[13] = "yellow"; 	car_Color[14] = "C3F266";
-car_Color[15] = "violet"; 	car_Color[16] = "grey";
+car_Color[15] = "violet"; 	car_Color[16] = "grey";*/
