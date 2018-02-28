@@ -1,14 +1,16 @@
 'use strict';
 
-import '../libs/easybutton/easy-button.css'
 import '../libs/easybutton/easy-button'
+import '../libs/easybutton/easy-button.css'
 import './easyButton.sass'
+import 'datatables.net-bs4'
+import 'datatables.net-bs4/css/dataTables.bootstrap4.css'
 import {$this, Cookies} from '../function/variable.js';
 import setAttr from '../function/add.js';
 import {crcl} from '../tracker/tracker'
 import Polygon from "../polygon/polygon";
 import {map} from '../function/drawMap';
-import Update, {group1, group2, group3, group4, group7} from './update';
+import Update, {group1, group2, group3, group4, group5, group6, group7} from './update';
 
 export default function easyButton() {
 
@@ -19,19 +21,31 @@ export default function easyButton() {
 			icon: '<img src="./images/connection.svg">',
 			title: 'Выключение трекера',
 			onClick: function (control) {
-				let list = '';
+				let item = [];
 				for (let k in group1) {
 					if (typeof group1[k] === 'object') {
-						let item = group1[k];
-						list += '<div class="row posic">' +
-							'<div class="col-2"><span><strong>№: </strong>' + item['DeviceID'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Номер устройства: </strong>' + item['NickName'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Время: </strong>' + item['SliceTimeUnit'] + ' </span></div>' +
-							'</div>';
+						item.push(
+							[group1[k]['DeviceID'], group1[k]['NickName'], group1[k]['SliceTimeUnit']]
+						);
 					}
 				}
-				$('#list').html(list);
-				$('#trackerList').modal('show');			}
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
+				$('#trackerList').modal('show');
+			}
 		}]
 	});
 	let b2 = L.easyButton({
@@ -41,18 +55,29 @@ export default function easyButton() {
 			icon: 'far fa-clock red',
 			title: 'Отключение трекера более чем на 1 час.',
 			onClick: function (control) {
-				let list = '';
+				let item = [];
 				for (let k in group2) {
 					if (typeof group2[k] === 'object') {
-						let item = group2[k];
-						list += '<div class="row posic">' +
-							'<div class="col-2"><span><strong>№: </strong>' + item['DeviceID'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Номер устройства: </strong>' + item['NickName'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Время: </strong>' + item['SliceTimeUnit'] + ' </span></div>' +
-							'</div>';
+						item.push(
+							[group2[k]['DeviceID'], group2[k]['NickName'], group2[k]['SliceTimeUnit']]
+						);
 					}
 				}
-				$('#list').html(list);
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
 				$('#trackerList').modal('show');
 			}
 		}]
@@ -64,18 +89,29 @@ export default function easyButton() {
 			icon: 'far fa-clock green',
 			title: 'Нахождение трекера в одной точке более часа.',
 			onClick: function (control) {
-				let list = '';
+				let item = [];
 				for (let k in group3) {
 					if (typeof group3[k] === 'object') {
-						let item = group3[k];
-						list += '<div class="row posic">' +
-							'<div class="col-2"><span><strong>№: </strong>' + item['DeviceID'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Номер устройства: </strong>' + item['NickName'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Время: </strong>' + item['SliceTimeUnit'] + ' </span></div>' +
-							'</div>';
+						item.push(
+							[group3[k]['DeviceID'], group3[k]['NickName'], group3[k]['SliceTimeUnit']]
+						);
 					}
 				}
-				$('#list').html(list);
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
 				$('#trackerList').modal('show');
 			}
 		}]
@@ -87,18 +123,29 @@ export default function easyButton() {
 			icon: '<img src="./images/star.svg">',
 			title: 'Совпадение траектории передвижения нескольких находящихся на связи трекеров в течение часа и более.',
 			onClick: function (control) {
-				let list = '';
+				let item = [];
 				for (let k in group4) {
 					if (typeof group4[k] === 'object') {
-						let item = group4[k];
-						list += '<div class="row posic">' +
-							'<div class="col-2"><span><strong>№: </strong>' + item['DeviceID'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Номер устройства: </strong>' + item['NickName'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Время: </strong>' + item['SliceTimeUnit'] + ' </span></div>' +
-							'</div>';
+						item.push(
+							[group4[k]['DeviceID'], group4[k]['NickName'], group4[k]['SliceTimeUnit']]
+						);
 					}
 				}
-				$('#list').html(list);
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
 				$('#trackerList').modal('show');
 			}
 		}]
@@ -110,7 +157,30 @@ export default function easyButton() {
 			icon: '<img src="./images/satellite.svg">',
 			title: 'Потеря GPS-сигнала.',
 			onClick: function (control) {
-				// $('#trackerList').modal('show');
+				let item = [];
+				for (let k in group5) {
+					if (typeof group5[k] === 'object') {
+						item.push(
+							[group5[k]['DeviceID'], group5[k]['NickName'], group5[k]['SliceTimeUnit']]
+						);
+					}
+				}
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
+				$('#trackerList').modal('show');
 			}
 		}]
 	});
@@ -121,7 +191,30 @@ export default function easyButton() {
 			icon: 'fas fa-battery-empty',
 			title: 'Низкое питание трекера.',
 			onClick: function (control) {
-				// $('#trackerList').modal('show');
+				let item = [];
+				for (let k in group6) {
+					if (typeof group6[k] === 'object') {
+						item.push(
+							[group6[k]['DeviceID'], group6[k]['NickName'], group6[k]['SliceTimeUnit']]
+						);
+					}
+				}
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
+				$('#trackerList').modal('show');
 			}
 		}]
 	});
@@ -132,24 +225,35 @@ export default function easyButton() {
 			icon: 'fas fa-exclamation red size',
 			title: 'Поступление тревожного вызова.',
 			onClick: function (control) {
-				let list = '';
+				let item = [];
 				for (let k in group7) {
 					if (typeof group7[k] === 'object') {
-						let item = group7[k];
-						list += '<div class="row posic">' +
-							'<div class="col-2"><span><strong>№: </strong>' + item['DeviceID'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Номер устройства: </strong>' + item['NickName'] + '</span></div>' +
-							'<div class="col-5"><span><strong>Время: </strong>' + item['SliceTimeUnit'] + ' </span></div>' +
-							'</div>';
+						item.push(
+							[group7[k]['DeviceID'], group7[k]['NickName'], group7[k]['SliceTimeUnit']]
+						);
 					}
 				}
-				$('#list').html(list);
+				$('#list').DataTable({
+					"bAutoWidth": false,
+					"sScrollY": "500px",
+					"bPaginate": false,
+					destroy: true,
+					bLengthChange: false,
+					searching: false,
+					ordering: false,
+					data: item,
+					"aoColumns" : [
+						{ sWidth: '108px', title: "№:" },
+						{ sWidth: '218px', title: "Номер устройства:" },
+						{ sWidth: '260px', title: "Время:" },
+					],
+				});
 				$('#trackerList').modal('show');
 			}
 		}]
 	});
 	let buttons = [b1, b2, b3, b4, b5, b6, b7];
-	// Update(b1, b2, b3, b4, b5, b6, b7);
+	Update(b1, b2, b3, b4, b5, b6, b7);
 	L.easyBar(buttons, {
 		position: 'bottomleft'
 	}).addTo(map);
