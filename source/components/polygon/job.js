@@ -1,7 +1,6 @@
 'use strict';
-import {job, api, $this, Cookies} from '../function/variable';
+import {job, api, $this, Cookies, jobArrP} from '../function/variable';
 
-let jobArrP = [];
 let szp = "",
 		szd = "";
 let $confirm_request, $decline_request;
@@ -56,7 +55,6 @@ export default function Job() {
 					}
 				}
 			}
-
 			$('#performed').html(szp);
 			$('#done').html(szd);
 		})
@@ -85,4 +83,3 @@ $(document).on('click', '.decline', function (e) {
 	$(".done").remove();
 	Job();
 });
-export {jobArrP}

@@ -3,13 +3,19 @@
 import '../sass/popup.css'
 import Date from "../tracker/tracker"
 import {map} from "../function/drawMap"
+import {jobArrP} from "../function/variable"
 
 let popup = "";
+let work, worker;
 export default function Popup(obj){
-
+	// console.log(obj.dab_level, '|', item);
 	$(document).on('click', '.hint', (e)=> {
 		map.closePopup();
 	});
+	for(let k in jobArrP){
+		work = (obj.DID !== jobArrP[k].DeviceID) ? 'Задание отсутствует' : jobArrP[k].Name_RM_RouteTaskHeader;
+		worker = (obj.DID !== jobArrP[k].DeviceID) ? 'Сотрудник не назначен' : jobArrP[k].KBDH_EmployeeName;
+	}
 
 	let speed = (obj.speed === null) ? 0 : obj.speed;
 
@@ -26,9 +32,9 @@ export default function Popup(obj){
 		"<strong data-geoid='0' class='address'>"+ obj.akName +"</strong></li>" +
 		"<li data-prop='address' class=''>Адрес:" +
 		"<strong data-geoid='0' class='address'></strong></li>" +
-		"<li data-prop='address' class=''>Сотрудник:" +
-		"<strong data-geoid='0' class='address'></strong></li>" +
-		"<li data-prop='alt'>Сменное задание: <strong><span class='alt'>СЗ по мк 1000</span></strong></li></ul>" +
+		"<li data-prop='address' class=''>Сотрудник: " +
+		"<strong data-geoid='0' class='address'>"+ worker +"</strong></li>" +
+		"<li data-prop='alt'>Сменное задание: <strong><span class='alt'>"+ work +"</span></strong></li></ul>" +
 		"<ul class='indicators connections'><li class='indicator isGsmOnline' data-state='0'>" +
 		"<svg class='svg-icon green '><use xlink:href='#smb-connection'>" +
 		"<svg viewBox='0 0 32 32' id='smb-connection' width='100%' height='100%'><path d='M32 16c0-8.837-7.163-16-16-16S0 7.163 0 16c0 6.877 4.339 12.739 10.428 15.002L10 32h12l-.428-.998C27.661 28.739 32 22.877 32 16zm-16.788 3.838a2 2 0 1 1 1.576.001L16 18l-.788 1.838zm1.609.077a4 4 0 1 0-1.641-.002l-2.332 5.441A8.002 8.002 0 0 1 8 17.999c0-4.418 3.582-8.375 8-8.375s8 3.957 8 8.375a8.003 8.003 0 0 1-4.848 7.355l-2.331-5.439zm4.693 10.951l-2.31-5.39C23.155 24.14 26 20.403 26 16c0-5.523-4.477-10-10-10S6 10.477 6 16c0 4.402 2.845 8.14 6.796 9.476l-2.31 5.39C5.499 28.726 2.005 23.771 2.005 18 2.005 10.271 8.271 3.63 16 3.63S29.995 10.271 29.995 18c0 5.771-3.494 10.726-8.481 12.866z'></path></svg>" +

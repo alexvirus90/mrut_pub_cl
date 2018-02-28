@@ -3,6 +3,8 @@ export {Cookies}
 
 let options = {};
 export let id_rm = [];
+export let jobArrP = [];
+
 
 export let $this = $(this);
 $this.selectValue = -1;
