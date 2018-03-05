@@ -10,7 +10,7 @@ import setAttr from '../function/add.js';
 import {crcl} from '../tracker/tracker'
 import Polygon from "../polygon/polygon";
 import {map} from '../function/drawMap';
-import Update, {group1, group2, group3, group4, group5, group6, group7} from './update';
+import Update, {group1, group2, group3, group4, group7} from './update';
 
 export default function easyButton() {
 
@@ -20,7 +20,7 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: '<img src="./images/connection.svg">',
 			title: 'Выключение трекера',
-			onClick: function (control) {
+			onClick: ()=> {
 				let item = [];
 				for (let k in group1) {
 					if (typeof group1[k] === 'object') {
@@ -54,7 +54,7 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: 'far fa-clock red',
 			title: 'Отключение трекера более чем на 1 час.',
-			onClick: function (control) {
+			onClick: () =>{
 				let item = [];
 				for (let k in group2) {
 					if (typeof group2[k] === 'object') {
@@ -88,7 +88,7 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: 'far fa-clock green',
 			title: 'Нахождение трекера в одной точке более часа.',
-			onClick: function (control) {
+			onClick: () =>{
 				let item = [];
 				for (let k in group3) {
 					if (typeof group3[k] === 'object') {
@@ -122,7 +122,7 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: '<img src="./images/star.svg">',
 			title: 'Совпадение траектории передвижения нескольких находящихся на связи трекеров в течение часа и более.',
-			onClick: function (control) {
+			onClick: () =>{
 				let item = [];
 				for (let k in group4) {
 					if (typeof group4[k] === 'object') {
@@ -156,8 +156,8 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: '<img src="./images/satellite.svg">',
 			title: 'Потеря GPS-сигнала.',
-			onClick: function (control) {
-				let item = [];
+			onClick: () =>{
+				/*let item = [];
 				for (let k in group5) {
 					if (typeof group5[k] === 'object') {
 						item.push(
@@ -180,7 +180,7 @@ export default function easyButton() {
 						{ sWidth: '260px', title: "Время:" },
 					],
 				});
-				$('#trackerList').modal('show');
+				$('#trackerList').modal('show');*/
 			}
 		}]
 	});
@@ -190,8 +190,8 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: 'fas fa-battery-empty',
 			title: 'Низкое питание трекера.',
-			onClick: function (control) {
-				let item = [];
+			onClick: ()=> {
+				/*let item = [];
 				for (let k in group6) {
 					if (typeof group6[k] === 'object') {
 						item.push(
@@ -214,7 +214,7 @@ export default function easyButton() {
 						{ sWidth: '260px', title: "Время:" },
 					],
 				});
-				$('#trackerList').modal('show');
+				$('#trackerList').modal('show');*/
 			}
 		}]
 	});
@@ -224,7 +224,7 @@ export default function easyButton() {
 			stateName: 'icon',
 			icon: 'fas fa-exclamation red size',
 			title: 'Поступление тревожного вызова.',
-			onClick: function (control) {
+			onClick: ()=> {
 				let item = [];
 				for (let k in group7) {
 					if (typeof group7[k] === 'object') {
@@ -262,7 +262,7 @@ export default function easyButton() {
 		states: [{
 			stateName: 'funBtn',
 			icon: 'far fa-play-circle',
-			onClick: function (control) {
+			onClick: () =>{
 				$('#easyButton').modal({
 					backdrop: false,
 					show: true,
@@ -277,7 +277,7 @@ export default function easyButton() {
 		states: [{
 			stateName: 'clean',
 			icon: 'fas fa-eraser',
-			onClick: function (control) {
+			onClick: () => {
 				$('#clean').css('display', 'none');
 				crcl.clearLayers();
 				$( "#dp1, #dp2" ).datepicker( "destroy" );
@@ -285,7 +285,7 @@ export default function easyButton() {
 		}],
 		position: 'topright'
 	}).addTo(map);
-	$('#funBtn').one('click', function () {
+	$('#funBtn').one('click', () =>{
 		if ($(window).width() <= 575) {
 			$('#summer-list-tab').removeClass('active');
 			$('.icon_system').addClass('active');
@@ -302,7 +302,7 @@ export default function easyButton() {
 		];
 		let listArrSummer = ['b1s', 'b2s', 'b3s', 'b4s', 'b5s', 'b6s', 'b7s', 'b8s'];
 		let summerList = $('div.summerList');
-		$.each(listArrSummer, function (i) {
+		$.each(listArrSummer, (i)=> {
 			let aList = document.createElement('a');
 			setAttr(aList, {
 				"id": "list-" + listArrSummer[i],
@@ -318,7 +318,7 @@ export default function easyButton() {
 		});
 	});
 	$('.winter').one({
-		click: function () {
+		click: () =>{
 			let textL = [
 				{tooltip: 'Вывоз снега ВС', value: 26},
 				{tooltip: 'Механизированная уборка комбинированными машинами МУКМ', value: 25},
@@ -339,7 +339,7 @@ export default function easyButton() {
 			];
 			let listArrWinter = ['b1w', 'b2w', 'b3w', 'b4w', 'b5w', 'b6w', 'b7w', 'b8w', 'b9w', 'b10w'];
 			let winterList = $('div.winterList');
-			$.each(listArrWinter, function (i) {
+			$.each(listArrWinter, (i)=> {
 				let aList = document.createElement('a');
 				setAttr(aList, {
 					"id": "list-" + listArrWinter[i],
@@ -356,17 +356,17 @@ export default function easyButton() {
 		}
 	});
 	$('.summer, .winter').on({
-		mousedown: function (e) {
+		mousedown: (e)=> {
 			let listItem = $('.list-group-item');
 			if(listItem.hasClass('active')){
 				listItem.removeClass('active');
 			}
 		}
 	});
-	$(".no").on('click', function () {
+	$(".no").on('click', () =>{
 		$('#easyButton').modal('hide');
 	});
-	$(".clean").on('click', function () {
+	$(".clean").on('click', () =>{
 		Cookies.remove('value');
 		let listItem = $('.list-group-item');
 		if(listItem.hasClass('active')){
@@ -378,11 +378,11 @@ export default function easyButton() {
 			map.removeLayer(layers[k]);
 		}
 	});
-	$(document).on('click', '.list-group-item', function (e) {
+	$(document).on('click', '.list-group-item', (e)=> {
 		$this.selectValue = e.target.attributes[2].value;
 	});
 	$('.yes').on({
-		click: function () {
+		click: () =>{
 			if(!($this.selectValue === -1)){
 				Cookies.set('value', $this.selectValue, {expires: 1});
 				$('#easyButton').modal('hide');

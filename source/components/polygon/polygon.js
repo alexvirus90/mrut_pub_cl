@@ -2,7 +2,9 @@
 
 import getColor from '../polygon/GetColorPull'
 import {map} from "../function/drawMap"
-import {api, Cookies, $this, id_rm} from "../function/variable"
+import {api, Cookies, $this} from "../function/variable"
+
+let id_rm = [];
 
 export default function Polygon() {
 	let url = api + 'getZoneFun&pid=' + Cookies.get('pid') + "&fid=" + Cookies.get('value');

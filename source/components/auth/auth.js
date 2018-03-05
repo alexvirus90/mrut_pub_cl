@@ -3,6 +3,9 @@ import 'bootstrap'
 import './auth.sass'
 import './maxLength';
 import './clear';
+import '../libs/extjs/adapter/ext/ext-base-debug';
+import '../libs/extjs/ext-all-debug';
+import '../libs/extjs/resources/css/ext-all.css';
 import md5 from 'md5'
 import rsM from './resize';
 import Job, {jobArrP} from "../polygon/job";

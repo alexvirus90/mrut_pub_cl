@@ -11,28 +11,23 @@ import rsM from '../function/resize'
 let pointList = [];
 
 export default function Date(vid) {
-	$( "#dp1, #dp2" ).datepicker( "destroy" );
-	$( "#tp1, #tp2" ).datetimepicker( "destroy" );
+	console.log('vid', vid);
 
 	try{
 		crcl.clearLayers();}
 	catch (e){}
 
-	rsM();
 	$(() => {
 		$("#dp1, #dp2").datepicker();
 		$('#tp1, #tp2').datetimepicker({
 			format: 'LT',
 			locale: 'ru'
 		});
-		rsM();
 	});
-	$(window).resize(() => {
-		rsM();
-	});
-
 	$(document).on('click', '.create', ()=> {
 
+		$( "#dp1, #dp2" ).datepicker( "destroy" );
+		$( "#tp1, #tp2" ).datetimepicker( "destroy" );
 		pointList = [];
 
 		try{
@@ -89,16 +84,20 @@ export default function Date(vid) {
 				try{
 					map.fitBounds(pointList);}
 				catch (e){
-					alert('Данные по заданным параметрам, отсутствуют!')
+					$('#errorCreate').modal({
+						show: true
+					});
 				}
-				rsM();
 				$('#clean').css('display', 'block');
 				$('#loading').modal('hide');
 			});
 		$('#tracker').modal('hide');
 	});
-	$(document).on('click', '.cancel', function () {
+	$(document).on('click', '.cancel',  ()=> {
 		$('#tracker').modal('hide');
 	});
 }
+$(document).on('click', '.exit', ()=>{
+	$('#errorCreate').modal('hide');
+});
 export {crcl}

@@ -7,7 +7,6 @@ import rsM from '../../components/function/resize.js';
 import drawMap, {map} from '../../components/function/drawMap.js';
 
 let resizeTimer;
-
 // function pageloadEvery(t) {
 // 	setTimeout('location.reload(true)', t);
 // }

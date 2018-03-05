@@ -62,6 +62,10 @@ export default function Job() {
 			// modEr(jqXHR, textStatus, errorThrown);
 		});
 }
+setInterval(()=>{
+	job.clear();
+	Job();
+}, 2000);
 $(document).on('click', '.confirm', function (e) {
 	e.preventDefault();
 	job.clear();

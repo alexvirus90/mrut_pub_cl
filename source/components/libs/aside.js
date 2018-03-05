@@ -21,7 +21,7 @@ function injectAsidebar(jQuery) {
 				$(this).removeClass("in");
 				break;
 			case "toggle":
-				if($(this).attr("class").split(' ').indexOf('in') > -1) {
+				if ($(this).attr("class").split(' ').indexOf('in') > -1) {
 					$(this).asidebar("close");
 				} else {
 					$(this).asidebar("open");
@@ -30,6 +30,7 @@ function injectAsidebar(jQuery) {
 		}
 	}
 }
+
 if (typeof jQuery !== "undefined") {
 	injectAsidebar(jQuery);
 } else if (typeof module !== "undefined" && module.exports) {
