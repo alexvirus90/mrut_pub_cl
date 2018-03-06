@@ -3,7 +3,7 @@
 import '../sass/popup.css'
 import Date from "../tracker/tracker"
 import {map} from "../function/drawMap"
-import {jobArrP, api, $this, Cookies, dataInfo} from "../function/variable"
+import {jobArrP, api, $this, Cookies, dataInfo, emplWebInf} from "../function/variable"
 import GetTemplatePopup from './getTempPopup'
 
 let popup = "";
@@ -12,24 +12,30 @@ export default function Popup(obj){
 	let jobWebInfo = api + "RM_JobWebInfo_Get&pid=" + Cookies.get('pid') + '&vid=' + obj.VID;
 	let employeeWebInfo = api + "GetEmployeeWebInfo&pid=" + Cookies.get('pid') + '&vid=' + obj.VID;
 
-	$.ajax(employeeWebInfo)
+	/*$.ajax(employeeWebInfo)
 		.done((e)=>{
-			console.log('employeeWebInfo', eval(e));
+			emplWebInf.push(eval(e));
+			// console.log('employeeWebInfo', eval(e));
+			for(let j in emplWebInf){
+				if(typeof emplWebInf[j] === 'object' ){
+					// console.log(obj, '|', emplWebInf[j]);
+				}
+			}
+
 		});
 
 	$.ajax(jobWebInfo)
 		.done((e)=>{
-			console.log('jobWebInfo', e);
-		});
+			// console.log('jobWebInfo', e.length);
+		});*/
 
 	$(document).on('click', '.hint', (e)=> {
 		map.closePopup();
 	});
+
 	for(let k in jobArrP) {
 		if (typeof jobArrP[k] === 'object') {
 			let obj1 = {};
-			// console.log('obj', obj);
-			// if (obj.NAME === "ТР9887") console.log(obj, '|', jobArrP[k]);
 			let speed = (obj.speed === null) ? 0 : obj.speed;
 			if (obj.NAME === jobArrP[k].NickName /*&& jobArrP[k].Name !== ''*/) {
 				obj1 = {
@@ -38,7 +44,7 @@ export default function Popup(obj){
 					akName: obj.akName,
 					KBDH_EmployeeName: jobArrP[k].KBDH_EmployeeName,
 					Name: jobArrP[k].Name/*+ ' № '+ jobArrP[k].ID + ' (' + jobArrP[k].Name_RM_RouteTaskHeader + ')'*/,
-					// func: ,
+					func: '-',
 					time: obj.time,
 					VID: obj.VID,
 					dab_level: '-'
@@ -51,7 +57,7 @@ export default function Popup(obj){
 					akName: obj.akName,
 					KBDH_EmployeeName: '-',
 					Name: '-',
-					// func: ,
+					func: '-',
 					time: obj.time,
 					VID: obj.VID,
 					dab_level: '-'

@@ -19,7 +19,7 @@ let usr = $('#Username');
 let rdio = $('#checkboxID');
 let logout = $('.logout');
 
-$(document).on('click', '.logout', () => {
+$(document).on('click', '.sign_out', () => {
 	//Удаление layers
 	let layers = $this.layers;
 	for (let k in layers) {
