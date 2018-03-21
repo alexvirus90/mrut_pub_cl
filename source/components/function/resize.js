@@ -10,4 +10,6 @@ export default function rsM() {
 	// content_height -= (content.outerHeight() - content.height());
 	// content.height(content_height);
 	$("#map_canvas").height(content_height);
+	$("#map_canvas_M").height(content_height);
+	$(".sidebar-left").height(content_height);
 }

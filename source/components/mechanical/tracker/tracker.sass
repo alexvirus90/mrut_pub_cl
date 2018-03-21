@@ -1,0 +1,49 @@
+@import "~tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css"
+@import "../../sass/variables"
+@import "../../sass/mixin"
+
+.modal-dialog
+  .body_date__time-range
+    position: relative
+    .date_form
+      float: left
+      &:first-child
+        margin-right: 10px
+      .datepicker
+        .ui-datepicker
+          height: 242px
+          width: 228px
+    .control-group
+      margin-top: 5px
+      .date
+        display: inline
+        .bootstrap-datetimepicker-widget.dropdown-menu
+
+        .time
+          width: 60px
+          height: 30px
+          position: relative
+          vertical-align: top
+          display: inline-block
+          font-size: 13px
+        .bttn
+          margin-left: -5px
+          display: inline-block
+#loading, #errorCreate
+  text-align: center
+  .modal-dialog
+    border: 1px solid #757575
+    -webkit-border-radius: .3rem
+    -moz-border-radius: .3rem
+    border-radius: .3rem
+    display: inline-flex
+    margin-top: 15%
+    .modal-body
+      padding: 10px
+      font: 18px/25px Verdana, "DejaVu Sans", sans-serif
+      color: #757575
+    .load
+      padding-top: 1.2rem
+      i
+        color: #757575
+        z-index: 4000

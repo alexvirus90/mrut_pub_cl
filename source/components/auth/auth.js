@@ -1,18 +1,20 @@
 'use strict';
+
+// import '../libs/extjs/adapter/ext/ext-base-debug';
+// import '../libs/extjs/ext-all-debug';
+// import '../libs/extjs/resources/css/ext-
+
 import 'bootstrap'
 import './auth.sass'
 import './maxLength';
 import './clear';
-import '../libs/extjs/adapter/ext/ext-base-debug';
-import '../libs/extjs/ext-all-debug';
-import '../libs/extjs/resources/css/ext-all.css';
 import md5 from 'md5'
 import rsM from './resize';
-import Job, {jobArrP} from "../polygon/job";
-import Info from "../function/info";
-import {map} from "../function/drawMap"
+import Job, {jobArrP} from "../manual/polygon/job";
+import Info from "../manual/function/info";
+import {map} from "../manual/function/drawMap"
 import {api, Cookies, $this, dataInfo} from "../function/variable"
-import {mrkOn, mrkOff, mrkA} from '../function/addMarker';
+import {mrkOn, mrkOff, mrkA} from '../manual/function/addMarker';
 
 let pass = $('#Password');
 let usr = $('#Username');
@@ -96,6 +98,7 @@ $('#save').on('click', () => {
 	let jqxhr = $.get(mdd)
 		.done((data) => {
 			let access = JSON.parse(data);
+			console.log('access', access);
 			if (!(access.success === false || access.success === '')) {
 				Cookies.set('pid', access.pid, {expires: 1});
 				$('#auth').modal('hide');

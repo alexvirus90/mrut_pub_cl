@@ -3,13 +3,17 @@ export {Cookies}
 
 let options = {};
 export let jobArrP = [];
+export let dataCar = [];
 export let emplWebInf = [];
-
+export let carsArray 	= [];
+export let global = {data: []};
 
 export let $this = $(this);
 $this.selectValue = -1;
 
 export let dataInfo = new vis.DataSet(options);
+export let dataInfoM = new vis.DataSet(options);
+export let data 		 = new vis.DataSet(options);
 export let priznak = new vis.DataSet(options);
 export let job = new vis.DataSet(options);
 
@@ -24,10 +28,11 @@ export let api = 'http://admmrut.adc.spb.ru/srv/api.php?action=';
 export let mrkOff = new L.LayerGroup();
 export let mrkOn = new L.LayerGroup();
 export let mrkA = new L.LayerGroup();
+export let mrkOffM = new L.LayerGroup();
+export let mrkOnM = new L.LayerGroup();
 export let crcl = new L.LayerGroup();
 
-
-/*export let car_imgColor = [];
+export let car_imgColor = [];
 export let car_Fun 		  = [];
 export let car_Color 	  = [];
 
@@ -52,8 +57,8 @@ car_Fun[10] = "Плужное оборудование (на автомобил�
 car_Fun[11] = "Бульдозеры";
 car_Fun[12] = "Распределители жидких реагентов";
 car_Fun[13] = "Тягач (для уборочной техники)";
-car_Fun[15] = "Контроль";
-car_Fun[16] = "Ручная уборка";
+car_Fun[14] = "Контроль";
+car_Fun[15] = "Ручная уборка";
 car_Color[1] = "black"; 		car_Color[2] = "#9B30FF";
 car_Color[3] = "turquoise"; car_Color[4] = "red";
 car_Color[5] = "orange"; 		car_Color[6] = "blue";
@@ -61,4 +66,4 @@ car_Color[7] = "green"; 		car_Color[8] = "lime";
 car_Color[9] = "#00D5D5"; 	car_Color[10] = "yellow";
 car_Color[11] = "#FF6A00"; 	car_Color[12] = "brown";
 car_Color[13] = "yellow"; 	car_Color[14] = "C3F266";
-car_Color[15] = "violet"; 	car_Color[16] = "grey";*/
+car_Color[15] = "violet"; 	car_Color[16] = "grey";

@@ -1,0 +1,18 @@
+div(class="modal" id='easyButtonM')
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-body")
+        ul(class="nav nav-pills nav-fill")
+          li(class="nav-item mechfunc")
+            a(class="nav-link d-sm-none icon_system" href="#mechfunc-list" data-toggle="pill" role="tab" aria-controls="mechfunc")
+              i(class="fa fa-info" aria-hidden="true")
+            a(class="nav-link active d-sm-block d-none" href="#mechfunc-list" id="mechfunc-list-tab" data-toggle="pill" role="tab" aria-controls="mechfunc") Функции механизированной уборки
+        div(class="tab-content")
+          div(class="tab-pane fade show active" id="mechfunc-list"  role="tabpanel" aria-labelledby="system-tab")
+            div(class='row')
+              div(class='col-12 colFunc')
+                div(class="list-group mechfuncList" role="tablist")
+      div(class="modal-footer")
+        button(type="button" class="btn btn-outline-light cleanM") Сбросить
+        button(type="button" class="btn btn-primary yesM") Выбрать
+        button(type="button" class="btn btn-primary noM") Отмена

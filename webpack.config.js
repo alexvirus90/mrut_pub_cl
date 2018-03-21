@@ -70,7 +70,7 @@ const common = merge([
 			}),
 			new CopyWebpackPlugin([
 				{from:'pages/images',to:'images'},
-				// {from:'components/function/info.json',to:''},
+				{from:'components/mechanical/function/info.json',to:''},
 				// {from:'components/function/job.json',to:''},
 			]),
 			new webpack.NamedModulesPlugin(),

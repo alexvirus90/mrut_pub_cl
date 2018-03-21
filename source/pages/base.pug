@@ -9,35 +9,51 @@ html
   body
     nav(class='tabs')
       div(class="nav nav-tabs" id="nav-tab" role="tablist")
-        li(class="nav-item indX")
-          a(class="nav-link d-sm-none icon_system active disabled")
+        li(class="nav-item indX manual")
+          a(class="nav-link d-sm-none icon_system active")
             i(class="fas fa-hand-paper")
           a(class="nav-link d-sm-block d-none active" id="nav-manual-tab" data-toggle="tab" href="#manual" role="tab" aria-controls="nav-manual" aria-selected="true") Ручная уборка
-        li(class="nav-item indX")
-          a(class="nav-link d-sm-none icon_system disabled")
+        li(class="nav-item indX mechanical")
+          a(class="nav-link d-sm-none icon_system" )
             i(class="fas fa-bus")
-          a(class="nav-link d-sm-block d-none disabled" id="nav-mechanical-tab" data-toggle="tab" href="#mechanical" role="tab" aria-controls="nav-mechanical" aria-selected="false") Механизированная уборка
+          a(class="nav-link d-sm-block d-none " id="nav-mechanical-tab" data-toggle="tab" href="#mechanical" role="tab" aria-controls="nav-mechanical" aria-selected="false") Механизированная уборка
         li(class="nav-item indX")
           a(class="nav-link d-sm-none icon_system disabled")
             i(class="fab fa-leanpub")
           a(class="nav-link d-sm-block d-none disabled" id="nav-plan-tab" data-toggle="tab" href="#plan" role="tab" aria-controls="nav-plan" aria-selected="false") План по уборке снега
         div(class="justify-content-end logout active" )
+          button(class="btn btn-light information indX" type="button" title="Выйти")
+            i(class="fas fa-info-circle align-middle info" )
           button(class="btn btn-light sign_out indX" type="button" title="Выйти")
             i(class="far fa-user-circle align-middle" )
+    include ../components/auth/auth
+    include ../components/auth/error
+    include ../components/modal/modal
+    include ./header/header
+    div(data-role="content" style="padding:0;")
+      include ../components/aside/aside
     div(class="tab-content" id="nav-tabContent")
-      div(id="manual" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-manual-tab")
-        include ../components/auth/auth
-        include ../components/auth/error
-        include ../components/modal/modal
-        include ../components/easyButton/modalEasyButton
-        include ../components/easyButton/trackerList
+      div(id="manual" class="tab-pane fade active show" role="tabpanel" aria-labelledby="nav-manual-tab")
+        include ../components/manual/easyButton/modalEasyButton
+        //include ../components/easyButton/trackerList
         //include ../components/polygon/modal
-        include ../components/tracker/modal
-        include ../components/tracker/loading
-        include ../components/tracker/error
-        include ./header/header
+        include ../components/manual/tracker/modal
+        include ../components/manual/tracker/loading
+        include ../components/manual/tracker/error
         div(data-role="content" style="padding:0;")
+          include ../components/manual/grid/left
           include ./map/map
-          include ../components/aside/aside
-      div(id="mechanical" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-mechanical-tab")
+      div(id="mechanical" class="tab-pane fade " role="tabpanel" aria-labelledby="nav-mechanical-tab")
+        include ../components/mechanical/easyButton/modalEasyButton
+        //include ../components/easyButton/trackerList
+        //include ../components/polygon/modal
+        //include ../components/tracker/modal
+        //include ../components/tracker/loading
+        //include ../components/tracker/error
+        div(data-role="content" style="padding:0;")
+          include ./map/mapM
       div(id="plan" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-plan-tab")
+
+
+
+

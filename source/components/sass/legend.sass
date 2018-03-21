@@ -1,37 +1,39 @@
-.legend
+.legend, .legendM
   line-height: 18px
   color: #555
-  width: 150px
   transition: all, 0.3s linear
   border: 2px solid rgba(0, 0, 0, .2)
   background-clip: padding-box
+  .mrg
+    background: rgba(255,255,255,.9)
+    padding: 6px
+    border-radius: 5px
+  .col-12, .col-2, .col-10
+    padding: 0
+  .col-2
+    max-width: 11%
+    cursor: pointer
+  .col-10
+    max-width: 89%
+    .col-12
+      padding: 5px 0
+  p
+    font-size: 10px
+    margin: 0
+    line-height: 1.4285em
+.legend
+  width: 150px
   background: rgba(255,255,255,.7)
-
-  //.mrg
-  //  background: rgba(255,255,255,.9)
-  //  padding: 6px
-  //  border-radius: 5px
-  //.col-12, .col-2, .col-10
-  //  padding: 0
-  //.col-2
-  //  max-width: 11%
-  //  cursor: pointer
-  //.col-10
-  //  max-width: 89%
-  //  .col-12
-  //    padding: 5px 0
-  //p
-  //  font-size: 10px
-  //  margin: 0
-  //  line-height: 1.4285em
-//.legendHide
-//  width: 41px
-//  transition: all, 0.1s linear
-//  .colHide
-//    right: -500px
-//.colHide
-//  position: absolute
-//  right: -5px
-//  transition: all, 0.3s linear
-.info
+.legendM
+  width: 260px
+.legendHideM
+  width: 41px
+  transition: all, 0.1s linear
+  .colHide
+    right: -500px
+.colHide
+  position: absolute
+  right: -5px
+  transition: all, 0.3s linear
+.info, .infoM
   border-radius: 5px
