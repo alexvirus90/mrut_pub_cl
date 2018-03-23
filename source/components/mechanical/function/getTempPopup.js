@@ -2,9 +2,10 @@
 
 let popup_tmp = "";
 
-export default function GetTemplatePopup(obj) {
+export default function GetTemplatePopupM(obj) {
 	popup_tmp = "<div class='header1 clearfix'><div class='actions'>" +
-		"<a class='hint hint-top svg-icon svg-icon-circle-remove icon-close' href='javascript:;' data-hint='Закрыть'></a></div>" +
+		"<a class='hintM hint-top svg-icon svg-icon-circle-remove icon-close' href='javascript:;'" +
+		" data-hint='Закрыть'></a></div>" +
 		"</div><div class='contents'><div data-key='summary'" +
 		" class='content" +
 		" active'>" +

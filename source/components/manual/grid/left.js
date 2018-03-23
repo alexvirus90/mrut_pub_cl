@@ -1,20 +1,26 @@
 import './left.sass'
 
-export default function LeftGrid() {
-	console.clear();
+export default function LeftGrid(obj) {
 
-	window.onload = function() {
+	$('.sidebar-left-wrapper__tree').treeview({
+		dataUrl: {
+			url: './tree.json',
+			method: 'GET',
+			dataType: 'json',
+			cache: false,
+		},
+		showCheckbox: true,
+		color: '#428bca',
+		showTags: true,
+		tagsClass: "badge badge-pill badge-secondary float-right"
+	});
+
+/*	window.onload = function() {
 		let leftMenu  = document.querySelector('.sidebar-left'),
 			menuWidgets = document.querySelector('.sidebar-left__widgets'),
 			toggleMenu  = document.querySelector('.toggle_menu'),
 			leftUser    = document.querySelector('.sidebar-left__user');
 
 
-	};
-}
-
-let divs = document.getElementsByTagName('div');
-
-for(let i = 0;i < divs.length; i++ ){
-	console.log(divs.length);
+	};*/
 }

@@ -4,6 +4,7 @@ import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css'
 import Connect from './connect';
 import {dataInfo, api, Cookies, $this} from '../../function/variable';
 import AddMarker from './addMarker';
+import LeftGrid from '../grid/left';
 
 export default function Info() {
 
@@ -11,6 +12,7 @@ export default function Info() {
 	$.get(url)
 		.done((data1) => {
 			let data = JSON.parse(data1);
+			LeftGrid(data1);
 			dataInfo.clear();
 			try {
 				dataInfo.add(data);}

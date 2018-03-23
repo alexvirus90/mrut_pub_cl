@@ -59,6 +59,7 @@
     "moment": "^2.20.1",
     "node-sass": "^4.7.2",
     "node-static": "^0.7.9",
+    "patternfly-bootstrap-treeview": "^2.1.5",
     "popper.js": "^1.12.9",
     "pug": "^2.0.0-beta11",
     "pug-loader": "^2.3.0",

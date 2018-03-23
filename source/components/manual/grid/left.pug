@@ -2,19 +2,23 @@
 div(class="sidebar-left")
   div(class="sidebar-left-wrapper")
     div(class="sidebar-left-wrapper__head")
-      h3 Администратор
+      nav(class='tabs')
+        div(class="nav nav-tabs" id="nav-tab" role="tablist")
+          li(class="nav-item indX mobile")
+            a(class="nav-link d-sm-none icon_system active")
+              i(class="fas fa-hand-paper")
+            a(class="nav-link d-sm-block d-none active" id="nav-mobile-tab" data-toggle="tab" href="#mobile" role="tab" aria-controls="nav-mobile" aria-selected="true") Мобильные объекты
+          li(class="nav-item indX geozones")
+            a(class="nav-link d-sm-none icon_system disabled" )
+              i(class="fas fa-bus")
+            a(class="nav-link d-sm-block d-none disabled" id="nav-geozones-tab" data-toggle="tab" href="#geozones" role="tab" aria-controls="nav-geozones" aria-selected="false") Геозоны
+          li(class="nav-item indX tracks")
+            a(class="nav-link d-sm-none icon_system disabled")
+              i(class="fab fa-leanpub")
+            a(class="nav-link d-sm-block d-none disabled" id="nav-tracks-tab" data-toggle="tab" href="#tracks" role="tab" aria-controls="nav-tracks" aria-selected="false") Треки
+          li(class="nav-item indX reports")
+            a(class="nav-link d-sm-none icon_system disabled")
+              i(class="fab fa-leanpub")
+            a(class="nav-link d-sm-block d-none disabled" id="nav-reports-tab" data-toggle="tab" href="#reports" role="tab" aria-controls="nav-reports" aria-selected="false") Отчеты
     div(class="sidebar-left-wrapper__tree")
-      button(class="widgets-item")
-        span
-          i(class="fa fa-home" aria-hidden="true") Консоль
-      button(class="widgets-item")
-        span
-          i(class="fa fa-desktop" aria-hidden="true") Виджеты
-        span(class="widget-update") Обновления
-      button(class="widgets-item")
-        span
-          i(class="fa fa-envelope" aria-hidden="true") Входящие звонки
-        span(class="widget-notify") 117
-      button(class="widgets-item")
-        span
-          i(class="fa fa-sliders" aria-hidden="true") Оформление
+

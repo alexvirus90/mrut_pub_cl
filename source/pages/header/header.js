@@ -1,6 +1,6 @@
 'use strict';
 
-import 'bootstrap';
+// import 'bootstrap';
 import './header.sass';
 import '../../components/libs/aside';
 import setAttr from '../../components/function/add.js';
@@ -19,10 +19,19 @@ clear();
 
 $('.information').click(() => {
 	$('#infoModal').modal('show');
-	if ($(window).width() <= 575){
+});
+$('.col-left').click(() => {
+	let sidebar = $('.sidebar-left');
+	if (sidebar.css('display') === 'block'){
+		sidebar.hide('slow');
+	} else {
+		sidebar.show('slow');
+	}
+
+/*	if ($(window).width() <= 575){
 		$('#system-tab').removeClass('active');
 		$('.icon_system').addClass('active');
-	}
+	}*/
 });
 $('.col-right').click(() => {
 	nsScrl();

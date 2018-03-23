@@ -5,6 +5,8 @@
 // import '../libs/extjs/resources/css/ext-
 
 import 'bootstrap'
+import 'patternfly-bootstrap-treeview/dist/bootstrap-treeview.min'
+import './treeview.sass'
 import './auth.sass'
 import './maxLength';
 import './clear';
@@ -98,7 +100,6 @@ $('#save').on('click', () => {
 	let jqxhr = $.get(mdd)
 		.done((data) => {
 			let access = JSON.parse(data);
-			console.log('access', access);
 			if (!(access.success === false || access.success === '')) {
 				Cookies.set('pid', access.pid, {expires: 1});
 				$('#auth').modal('hide');

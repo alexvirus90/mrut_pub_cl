@@ -4,7 +4,7 @@ import './map.sass';
 import 'jquery-ui/ui/widgets/progressbar';
 import nsScrl from '../../components/function/scroll.js';
 import rsM from '../../components/function/resize.js';
-import LeftGrid from '../../components/manual/grid/left'
+// import LeftGrid from '../../components/manual/grid/left'
 import drawMap, {map} from '../../components/manual/function/drawMap.js';
 import drawMapM, {map_M} from '../../components/mechanical/function/drawMapM.js';
 import Info from '../../components/mechanical/function/info.js';
@@ -12,13 +12,14 @@ import Info from '../../components/mechanical/function/info.js';
 let resizeTimer;
 
 rsM();
-LeftGrid();
 drawMap();
 
 $(window).resize(() => {
 	rsM();
-	map._onResize.call(map);
-	map_M._onResize.call(map_M);
+	try {
+		map._onResize.call(map);
+		map_M._onResize.call(map_M);}
+	catch (e){}
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(rsM(), 100);
 	$('#performed').css('max-height', '');

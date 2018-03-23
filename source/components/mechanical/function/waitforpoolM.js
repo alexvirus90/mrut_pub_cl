@@ -7,7 +7,7 @@ import getFuncCar from './funcar';
 import getIcon from './icon';
 import {data, mrkOffM, mrkOnM, t4, dataCar} from '../../function/variable'
 import {global} from './info'
-import GetTemplatePopup from './getTempPopup'
+import GetTemplatePopupM from './getTempPopup'
 
 let popup = "";
 
@@ -100,7 +100,7 @@ export default function waitforpoolM() {
 						// VID: obj.VID,
 						// dab_level: '-'
 					};
-				popup = GetTemplatePopup(obj_M);
+				popup = GetTemplatePopupM(obj_M);
 				_marker._popup.setContent(popup, {className: 'obj-info selectable mobile-obj-info extended', minWidth: 264});
 			} else {
 				let func = getFuncCar(obj, msg.sensors),
@@ -128,7 +128,7 @@ export default function waitforpoolM() {
 						// VID: obj.VID,
 						// dab_level: '-'
 					};
-				popup = GetTemplatePopup(obj_M);
+				popup = GetTemplatePopupM(obj_M);
 				if (((msg.sensors & obj.GB_MASK) / obj.GB_MASK) === obj.GB_AL &&
 					((msg.sensors & 8) / 8) === 1) {
 					mrkOnM.addLayer(marker);
@@ -150,7 +150,7 @@ export default function waitforpoolM() {
 	};
 }
 
-$(document).on('click', '.hint', (e)=> {
+$(document).on('click', '.hintM', (e)=> {
 	map_M.closePopup();
 });
 

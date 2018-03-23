@@ -306,7 +306,7 @@ export default function easyButton() {
 			let aList = document.createElement('a');
 			setAttr(aList, {
 				"id": "list-" + listArrSummer[i],
-				"class": "list-group-item list-group-item-action",
+				"class": "list-group-item-value list-group-item-action",
 				"value": textL[i].value,
 				"data-toggle": "list",
 				"href": "#list-" + listArrSummer[i],
@@ -343,7 +343,7 @@ export default function easyButton() {
 				let aList = document.createElement('a');
 				setAttr(aList, {
 					"id": "list-" + listArrWinter[i],
-					"class": "list-group-item list-group-item-action",
+					"class": "list-group-item-value list-group-item-action",
 					"value": textL[i].value,
 					"data-toggle": "list",
 					"href": "#list-" + listArrWinter[i],
@@ -380,7 +380,7 @@ export default function easyButton() {
 		console.log('man', Cookies.get());
 
 	});
-	$(document).on('click', '.list-group-item', (e)=> {
+	$(document).on('click', '.list-group-item-value', (e)=> {
 		$this.selectValue = e.target.attributes[2].value;
 	});
 	$('.yes').on({
