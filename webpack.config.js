@@ -52,6 +52,11 @@ const common = merge([
 				},
 				template: './pages/base.pug',
 			}),
+			/*new HtmlWebpackPlugin({
+				filename: 'blog.html',
+				chunks: [ '' ],
+				template: './pages/blog.pug',
+			}),*/
 			new webpack.optimize.CommonsChunkPlugin({
 				name: 'common',
 			}),

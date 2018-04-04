@@ -55,6 +55,7 @@
     "leaflet-extra-markers": "^1.0.6",
     "leaflet.fullscreen": "^1.4.4",
     "leaflet.locatecontrol": "^0.62.0",
+    "lodash": "^4.17.5",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
     "node-sass": "^4.7.2",
